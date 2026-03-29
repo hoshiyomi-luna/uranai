@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>星読み師♦るなの血液型×星座占い｜星と血が語るあなたの真実</title>
+<meta name="description" content="星座と血液型の組み合わせから、あなただけの性格・恋愛傾向・隠れた才能を読み解きます。星読み師♦るなの本格鑑定。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Shippori+Mincho:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg-deep:#0e0a12;--bg-card:#16112a;--gold:#d4a853;--gold-light:#f0d68a;--gold-dim:#a07c33;
+  --silver:#c8cfe0;--text:#e0e4f0;--text-dim:#8a8faa;
+  --accent:#c9735a;--accent-light:#e8a48e;
+  --cta-phone:#e8734a;--cta-chat:#7b6bce;--cta-line:#06c755;
+  --radius:14px;--font-body:'Zen Kaku Gothic New',sans-serif;--font-display:'Shippori Mincho',serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--bg-deep);color:var(--text);min-height:100vh;overflow-x:hidden;line-height:1.8;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(1.5px 1.5px at 14% 12%,rgba(255,255,255,.5) 50%,transparent 50%),radial-gradient(1px 1px at 30% 38%,rgba(255,255,255,.3) 50%,transparent 50%),radial-gradient(1.2px 1.2px at 50% 6%,rgba(255,255,255,.45) 50%,transparent 50%),radial-gradient(1px 1px at 62% 52%,rgba(255,255,255,.25) 50%,transparent 50%),radial-gradient(1.8px 1.8px at 80% 20%,rgba(255,255,255,.4) 50%,transparent 50%),radial-gradient(1px 1px at 90% 68%,rgba(255,255,255,.3) 50%,transparent 50%),radial-gradient(1.5px 1.5px at 25% 85%,rgba(255,255,255,.3) 50%,transparent 50%),radial-gradient(1.3px 1.3px at 70% 90%,rgba(255,255,255,.35) 50%,transparent 50%);pointer-events:none;z-index:0;animation:twinkle 6s ease-in-out infinite alternate}
+@keyframes twinkle{0%{opacity:.5}100%{opacity:1}}
+.wrapper{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:0 20px}
+header{text-align:center;padding:56px 0 32px}
+header .icon{font-size:44px;display:block;margin-bottom:12px;animation:float 3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+header h1{font-family:var(--font-display);font-weight:800;font-size:24px;color:var(--gold-light);letter-spacing:.08em;margin-bottom:6px}
+header .sub{font-size:13px;color:var(--text-dim);letter-spacing:.12em}
+header .intro{margin-top:20px;font-size:14px;color:var(--silver);line-height:1.9}
+
+.form-section{background:linear-gradient(135deg,var(--bg-card) 0%,#1c1435 100%);border:1px solid rgba(201,115,90,.15);border-radius:var(--radius);padding:32px 24px;margin-bottom:24px}
+.form-section h2{font-family:var(--font-display);font-size:18px;color:var(--accent);text-align:center;margin-bottom:20px}
+.date-inputs{display:flex;gap:8px;align-items:flex-end;margin-bottom:16px}
+.date-inputs .field{flex:1;display:flex;flex-direction:column}
+.date-inputs label{font-size:11px;color:var(--text-dim);margin-bottom:4px;letter-spacing:.06em}
+.date-inputs select{appearance:none;-webkit-appearance:none;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:8px;color:var(--text);font-family:var(--font-body);font-size:16px;padding:10px 12px;text-align:center;outline:none;transition:border-color .2s}
+.date-inputs select:focus{border-color:var(--accent)}
+
+.blood-select{margin-bottom:24px}
+.blood-select .blood-label{font-size:12px;color:var(--text-dim);margin-bottom:8px;letter-spacing:.06em}
+.blood-btns{display:flex;gap:8px}
+.blood-btns button{flex:1;padding:12px 0;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:8px;color:var(--text);font-family:var(--font-body);font-size:16px;font-weight:500;cursor:pointer;transition:all .2s}
+.blood-btns button:hover{background:rgba(201,115,90,.08);border-color:rgba(201,115,90,.3)}
+.blood-btns button.active{background:rgba(201,115,90,.15);border-color:var(--accent);color:var(--accent-light)}
+
+.btn-divine{display:block;width:100%;padding:14px;background:linear-gradient(135deg,var(--gold-dim),var(--gold),var(--gold-light));color:var(--bg-deep);border:none;border-radius:10px;font-family:var(--font-display);font-size:17px;font-weight:700;letter-spacing:.12em;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.btn-divine:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(212,168,83,.3)}
+.btn-divine:active{transform:translateY(0)}
+
+.loading-overlay{display:none;position:fixed;inset:0;background:rgba(14,10,18,.94);z-index:100;justify-content:center;align-items:center;flex-direction:column;gap:20px}
+.loading-overlay.active{display:flex}
+.loading-spinner{width:48px;height:48px;border:3px solid rgba(201,115,90,.15);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-overlay p{font-family:var(--font-display);color:var(--gold-light);font-size:15px;letter-spacing:.1em;animation:pulse 1.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.5}50%{opacity:1}}
+
+.result-section{display:none;animation:fadeUp .6s ease-out}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.result-card{background:linear-gradient(160deg,var(--bg-card) 0%,#1a1238 50%,#1e1430 100%);border:1px solid rgba(201,115,90,.2);border-radius:var(--radius);padding:32px 24px;margin-bottom:24px;position:relative;overflow:hidden}
+.result-card::before{content:'';position:absolute;top:-40px;right:-40px;width:120px;height:120px;background:radial-gradient(circle,rgba(201,115,90,.08) 0%,transparent 70%);pointer-events:none}
+
+.result-type-icon{text-align:center;font-size:48px;margin-bottom:8px}
+.result-type-name{text-align:center;font-family:var(--font-display);font-size:22px;color:var(--gold-light);font-weight:800;margin-bottom:4px}
+.result-type-sub{text-align:center;font-size:13px;color:var(--accent-light);letter-spacing:.08em;margin-bottom:24px}
+
+.result-body h3{font-family:var(--font-display);font-size:16px;color:var(--accent);margin-bottom:8px;margin-top:20px}
+.result-body h3:first-child{margin-top:0}
+.result-body p{font-size:14.5px;line-height:1.85;color:var(--silver)}
+.result-body .keyword-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.result-body .keyword-tags span{background:rgba(201,115,90,.1);border:1px solid rgba(201,115,90,.2);border-radius:20px;padding:4px 14px;font-size:12px;color:var(--accent-light)}
+
+.btn-retry{display:block;width:100%;padding:12px;background:transparent;border:1px solid rgba(201,115,90,.3);border-radius:10px;color:var(--accent);font-family:var(--font-display);font-size:15px;cursor:pointer;transition:background .2s;margin-bottom:32px}
+.btn-retry:hover{background:rgba(201,115,90,.06)}
+
+.cta-section{margin-bottom:48px}
+.cta-section .cta-lead{font-family:var(--font-display);font-size:18px;color:var(--gold-light);text-align:center;margin-bottom:6px}
+.cta-section .cta-sub{font-size:13px;color:var(--text-dim);text-align:center;margin-bottom:24px}
+.cta-card{display:block;text-decoration:none;background:var(--bg-card);border-radius:var(--radius);padding:20px;margin-bottom:14px;border:1px solid rgba(255,255,255,.06);transition:transform .15s,border-color .2s,box-shadow .2s}
+.cta-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.cta-card .cta-icon{font-size:28px;margin-bottom:8px}
+.cta-card .cta-title{font-family:var(--font-display);font-size:16px;font-weight:600;margin-bottom:4px}
+.cta-card .cta-desc{font-size:13px;color:var(--text-dim);line-height:1.6;margin-bottom:10px}
+.cta-card .cta-badge{display:inline-block;padding:4px 14px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:.04em}
+.cta-phone{border-color:rgba(232,115,74,.2)}.cta-phone:hover{border-color:rgba(232,115,74,.4)}.cta-phone .cta-title{color:#f0a080}.cta-phone .cta-badge{background:rgba(232,115,74,.15);color:#f0a080}
+.cta-chat{border-color:rgba(123,107,206,.2)}.cta-chat:hover{border-color:rgba(123,107,206,.4)}.cta-chat .cta-title{color:#a99de0}.cta-chat .cta-badge{background:rgba(123,107,206,.15);color:#a99de0}
+.cta-line{border-color:rgba(6,199,85,.15)}.cta-line:hover{border-color:rgba(6,199,85,.3)}.cta-line .cta-title{color:#4ddb82}.cta-line .cta-badge{background:rgba(6,199,85,.12);color:#4ddb82}
+footer{text-align:center;padding:24px 0 48px;font-size:11px;color:var(--text-dim);line-height:1.8}
+footer .pr-label{display:inline-block;padding:2px 10px;border:1px solid rgba(255,255,255,.1);border-radius:4px;font-size:10px;color:var(--text-dim);margin-bottom:8px;letter-spacing:.06em}
+@media(max-width:380px){.wrapper{padding:0 14px}header h1{font-size:21px}.result-card{padding:24px 16px}.form-section{padding:24px 16px}}
+
+/* ===== Back Nav ===== */
+.back-nav { position: relative; z-index: 10; text-align: center; padding: 16px 0 0; }
+.back-nav a { display: inline-block; font-family: var(--font-display); font-size: 13px; color: var(--gold); text-decoration: none; letter-spacing: .08em; padding: 6px 16px; border: 1px solid rgba(212,168,83,.2); border-radius: 20px; transition: border-color .2s, background .2s; }
+.back-nav a:hover { border-color: rgba(212,168,83,.4); background: rgba(212,168,83,.06); }
+
+</style>
+</head>
+<body>
+<div class="back-nav"><a href="index.html">✦ 占いの館に戻る</a></div>
+
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-spinner"></div>
+  <p>星と血の組み合わせを読んでいます…</p>
+</div>
+
+<div class="wrapper">
+  <header>
+    <span class="icon">🩸</span>
+    <h1>星読み師♦るなの血液型×星座占い</h1>
+    <p class="sub">— 星と血が語るあなたの真実 —</p>
+    <p class="intro">
+      星座が「魂の設計図」なら、<br>
+      血液型は「性格のスパイス」。<br>
+      このふたつが掛け合わされたとき、<br>
+      あなただけの本当の姿が浮かび上がります。
+    </p>
+  </header>
+
+  <section class="form-section" id="formSection">
+    <h2>✦ 生年月日と血液型を教えてください</h2>
+    <div class="date-inputs">
+      <div class="field"><label>月</label><select id="birthMonth"></select></div>
+      <div class="field"><label>日</label><select id="birthDay"></select></div>
+    </div>
+    <div class="blood-select">
+      <div class="blood-label">血液型</div>
+      <div class="blood-btns" id="bloodBtns">
+        <button onclick="selectBlood(this,'A')">A型</button>
+        <button onclick="selectBlood(this,'B')">B型</button>
+        <button onclick="selectBlood(this,'O')">O型</button>
+        <button onclick="selectBlood(this,'AB')">AB型</button>
+      </div>
+    </div>
+    <button class="btn-divine" onclick="divine()">占う</button>
+  </section>
+
+  <section class="result-section" id="resultSection">
+    <div class="result-card">
+      <div class="result-type-icon" id="resultIcon"></div>
+      <div class="result-type-name" id="resultName"></div>
+      <div class="result-type-sub" id="resultSub"></div>
+      <div class="result-body" id="resultBody"></div>
+    </div>
+    <button class="btn-retry" onclick="retry()">✦ もう一度占う</button>
+
+    <div class="cta-section">
+      <p class="cta-lead">もっと深く、あなた自身を知りたいなら</p>
+      <p class="cta-sub">星座×血液型の先にある、あなただけの物語</p>
+
+      <a class="cta-card cta-phone" href="https://px.a8.net/svt/ejp?a8mat=4AZO4G+FQSSJE+2PEO+C3BAQ" target="_blank" rel="nofollow noopener noreferrer sponsored">
+        <div class="cta-icon">📞</div>
+        <div class="cta-title">プロの占い師に電話で相談する</div>
+        <div class="cta-desc">タロット・霊感・占星術——あなたに合った占い師を選んで、今すぐ本格鑑定。恋愛・仕事・人間関係、なんでも相談OK。</div>
+        <span class="cta-badge">新規登録で3,000円分無料 ✦ 24時間OK</span>
+      </a>
+      <img border="0" width="1" height="1" src="https://www11.a8.net/0.gif?a8mat=4AZO4G+FQSSJE+2PEO+C3BAQ" alt="">
+
+      <a class="cta-card cta-chat" href="https://px.a8.net/svt/ejp?a8mat=4AZO4H+10X056+5SGG+5YRHE" target="_blank" rel="nofollow noopener noreferrer sponsored">
+        <div class="cta-icon">💬</div>
+        <div class="cta-title">チャットで気軽に相談する</div>
+        <div class="cta-desc">電話はちょっと…という方に。チャットで本格鑑定が受けられます。深夜でも、通勤中でも、いつでも。</div>
+        <span class="cta-badge">初回500円分ポイントプレゼント</span>
+      </a>
+      <img border="0" width="1" height="1" src="https://www10.a8.net/0.gif?a8mat=4AZO4H+10X056+5SGG+5YRHE" alt="">
+
+      <a class="cta-card cta-line" href="https://lin.ee/Vg3f2KS" target="_blank" rel="noopener noreferrer">
+        <div class="cta-icon">🌙</div>
+        <div class="cta-title">るなに直接占ってもらう</div>
+        <div class="cta-desc">あなたの悩みに合わせた本格鑑定を無料で体験できます。気になることを送るだけ。</div>
+        <span class="cta-badge">無料で本格鑑定を体験する</span>
+      </a>
+    </div>
+
+    <footer>
+      <span class="pr-label">PR</span><br>
+      © 星読み師♦るな<br>
+      本サイトにはアフィリエイト広告が含まれます
+    </footer>
+  </section>
+</div>
+
+<script>
+// ===== Selectors =====
+(function(){
+  const mS=document.getElementById('birthMonth'),dS=document.getElementById('birthDay');
+  for(let m=1;m<=12;m++){const o=document.createElement('option');o.value=m;o.textContent=m;mS.appendChild(o)}
+  function updateDays(){const m=parseInt(mS.value),max=new Date(2000,m,0).getDate(),cur=parseInt(dS.value)||1;dS.innerHTML='';for(let d=1;d<=max;d++){const o=document.createElement('option');o.value=d;o.textContent=d;if(d===Math.min(cur,max))o.selected=true;dS.appendChild(o)}}
+  mS.addEventListener('change',updateDays);updateDays();
+})();
+
+let selectedBlood = null;
+function selectBlood(btn, type) {
+  selectedBlood = type;
+  document.querySelectorAll('#bloodBtns button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// ===== Zodiac =====
+const SIGN_INFO = {
+  aries:{name:'牡羊座',icon:'♈'},taurus:{name:'牡牛座',icon:'♉'},gemini:{name:'双子座',icon:'♊'},
+  cancer:{name:'蟹座',icon:'♋'},leo:{name:'獅子座',icon:'♌'},virgo:{name:'乙女座',icon:'♍'},
+  libra:{name:'天秤座',icon:'♎'},scorpio:{name:'蠍座',icon:'♏'},sagittarius:{name:'射手座',icon:'♐'},
+  capricorn:{name:'山羊座',icon:'♑'},aquarius:{name:'水瓶座',icon:'♒'},pisces:{name:'魚座',icon:'♓'}
+};
+
+function getZodiac(month, day) {
+  const ranges = [
+    {sign:'capricorn',s:[1,1],e:[1,19]},{sign:'aquarius',s:[1,20],e:[2,18]},{sign:'pisces',s:[2,19],e:[3,20]},
+    {sign:'aries',s:[3,21],e:[4,19]},{sign:'taurus',s:[4,20],e:[5,20]},{sign:'gemini',s:[5,21],e:[6,21]},
+    {sign:'cancer',s:[6,22],e:[7,22]},{sign:'leo',s:[7,23],e:[8,22]},{sign:'virgo',s:[8,23],e:[9,22]},
+    {sign:'libra',s:[9,23],e:[10,23]},{sign:'scorpio',s:[10,24],e:[11,22]},{sign:'sagittarius',s:[11,23],e:[12,21]},
+    {sign:'capricorn',s:[12,22],e:[12,31]}
+  ];
+  const md = month*100+day;
+  for(const r of ranges){if(md>=r.s[0]*100+r.s[1]&&md<=r.e[0]*100+r.e[1])return r.sign;}
+  return 'capricorn';
+}
+
+// ===== 48 patterns =====
+const D = {
+// ===== A型 =====
+A_aries:{title:'炎の中の完璧主義者',personality:'A型の繊細さと牡羊座の突進力——相反する力が同居している。やりたいことに突っ走りたいのに、心のどこかで「ちゃんとしなきゃ」と自分にブレーキをかける。この葛藤がエネルギーの源。周りからは「行動力があるのに丁寧」と評価されやすい。',love:'好きになると一途に突っ走るけれど、告白するまでに何度もシミュレーションする慎重さがある。勢いで動くように見えて、実は失敗が怖い。でもその「準備した上で飛び込む」スタイルが、恋の成功率を上げている。',talent:'計画と行動を両立できる稀有な才能。「勢いだけの人」にも「石橋を叩くだけの人」にもならない。プロジェクトの立ち上げと管理を一人でこなせるタイプ。',keys:['慎重な情熱','計画的行動派','内なる葛藤']},
+A_taurus:{title:'静かなる王の器',personality:'A型の几帳面さと牡牛座の安定感——最強の信頼性を持つ組み合わせ。約束は絶対に守るし、始めたことは最後までやり遂げる。周りの人が無意識に頼りにする、人間関係の要になるタイプ。',love:'恋愛においては、じっくりと確かな関係を築きたい。軽い関係や曖昧な関係は好まない。相手の生活習慣や食の好みまで、細かいところの相性を重視する。一度好きになると長い。とても長い。',talent:'品質管理の天才。料理、インテリア、仕事の資料——何を作っても丁寧で美しい仕上がりになる。手をかけたものが輝く。',keys:['最強の信頼性','丁寧な美学','揺るがない愛']},
+A_gemini:{title:'知性のカメレオン',personality:'A型の気配り上手と双子座のコミュニケーション力——誰といても場を和ませる天性の社交家。ただし、本当の自分を見せることには慎重。「この人にはどこまで見せていいか」を無意識に計算している。',love:'恋愛では頭脳戦になりがち。好きな人の前では特に「嫌われたくない」が強く出て、自然体でいられなくなる。でも本音を言えた瞬間——その人があなたの運命の相手。',talent:'プレゼン力と準備力の掛け合わせ。アドリブも効くのに裏ではしっかり準備してある——プロの仕事ができる人。',keys:['完璧な社交術','本音を見せる勇気','プロの準備力']},
+A_cancer:{title:'愛の守護者',personality:'A型の責任感と蟹座の母性——誰よりも人を大切にできる組み合わせ。周りの人の小さな変化に気づき、さりげなくフォローする。ただし他人を気にしすぎて自分が疲れることも多い。',love:'恋愛では「尽くすタイプ」の極致。好きな人のためなら何でもするし、相手の幸せが自分の幸せ。ただし相手に尽くしすぎて自分を後回しにするパターンに注意。「大切にされたい」と言っていい。',talent:'チームの精神的支柱になれる才能。あなたがいるだけでチームの雰囲気が良くなり、離職率が下がるタイプ。',keys:['最強のケアギバー','尽くす愛','場の空気を変える力']},
+A_leo:{title:'華麗なる完璧主義',personality:'A型の几帳面さと獅子座の華やかさ——輝きたいのに、ミスが怖い。完璧な状態でステージに立ちたい。この高い基準があるから、あなたのパフォーマンスは常にハイレベル。',love:'恋愛では、自信を持ちたいのに「本当に私でいいのかな」と不安になる瞬間がある。堂々としているように見えて、実は相手の反応を気にしている。その繊細さが、意外と人を惹きつける。',talent:'「見栄えと中身を両立させる力」。プレゼンもデザインも、美しくて正確。他の人が二者択一にすることを、あなたは両方実現してしまう。',keys:['美しい完璧','繊細な自信','見栄えと中身']},
+A_virgo:{title:'究極の職人気質',personality:'A型の繊細さと乙女座の分析力が掛け合わされた、最も緻密なタイプ。細部へのこだわりが異常に強く、「普通の人が気づかないレベル」のことが気になる。品質にはとにかくうるさい。それが強みであり、たまに生きづらさにもなる。',love:'恋愛では、相手のことを徹底的に観察してから心を開く。「この人は信用できるか」を無意識に査定している。時間はかかるけれど、一度心を開くと深い信頼関係を築ける。',talent:'品質管理、校正、データ分析——「正確さ」が求められる全ての分野で無双できる。あなたのチェックを通ったものは完璧。',keys:['究極の精度','慎重な信頼構築','ミスを許さない目']},
+A_libra:{title:'洗練された調停者',personality:'A型の気配りと天秤座のバランス感覚——争いを嫌い、全員が心地よくいられる場を作る天才。ただし自分の意見を押し殺しがちで、ストレスを溜めやすい面も。',love:'恋愛では「相手に合わせすぎる」傾向が強い。自分の好みより相手の好みを優先してしまう。でも本当に長続きする関係は、あなたのわがままも受け入れてくれる相手とのもの。',talent:'接客、外交、チームマネジメント——人と人をつなぐ全ての場面で力を発揮する。あなたがいると空気が穏やかになる。',keys:['場を整える天才','合わせすぎ注意','穏やかなカリスマ']},
+A_scorpio:{title:'静かなる深淵',personality:'A型の慎重さと蠍座の深さ——内面に溜め込むタイプの極致。表面はいつも穏やかで冷静だけれど、心の奥では激しい感情が渦巻いている。信頼した相手にだけ、その深さを見せる。',love:'恋愛では「好き」のスイッチが入ると、相手の全てを知りたくなる。でもA型の慎重さが表に出るから、相手には「興味がないのかな？」と思われがち。実は誰よりも深く愛しているのに。',talent:'人の本質を見抜く洞察力。面接官、カウンセラー、探偵——人間の深層を読む仕事に向いている。嘘は見逃さない。',keys:['静かな激情','洞察力','表と奥のギャップ']},
+A_sagittarius:{title:'冒険する優等生',personality:'A型の規律と射手座の自由——矛盾するようで、実は最強の組み合わせ。冒険したいけど計画は立てる。自由に飛びたいけどリスク管理はする。「準備万端の冒険者」。',love:'恋愛では、自由でいたい気持ちと「ちゃんとした関係でいたい」気持ちが同居する。束縛は嫌だけど放置も嫌。自分でもよくわからない矛盾に悩むことがある。答えは「自由の中にルールがある関係」。',talent:'旅行プランナー、イベント企画——「楽しいことを安全に実現する」能力に長けている。みんなが安心して楽しめる場を作れる。',keys:['計画的冒険家','自由の中のルール','楽しさの設計者']},
+A_capricorn:{title:'鉄壁の努力家',personality:'A型の真面目さと山羊座の粘り強さ——努力の鬼。目標に向かって脇目も振らずに歩き続ける。手を抜くことが苦手で、常に100%を出そうとする。周りからの信頼は厚いが、自分に厳しすぎて疲れることも。',love:'恋愛では、地位や収入ではなく「誠実さ」を最重視。遊びの関係は論外。時間をかけて相手を見極め、「この人なら」と確信してから動く。動き出したら誰よりも一途。',talent:'長期プロジェクトの遂行力。3年計画でも5年計画でもブレずに走れる持久力と正確さがある。経営者、研究者向きの資質。',keys:['100%の努力','誠実さ最優先','鉄の持久力']},
+A_aquarius:{title:'静かな革命家',personality:'A型の協調性と水瓶座の独自性——周りに合わせているように見えて、頭の中では常に「もっと良い方法があるはず」と考えている。表面は穏やかに従いながら、内側でイノベーションを育てるタイプ。',love:'恋愛では、精神的なつながりを最重視。一般的な恋愛の「型」にはまることに違和感を感じる。デートの定番コースより、ふたりだけの過ごし方を見つけたい。',talent:'既存の仕組みを壊さずに改善する力。革命家なのに敵を作らない。社内改革を穏やかに進められる稀有なタイプ。',keys:['穏やかな異端','仕組みの改善者','独自の恋愛観']},
+A_pisces:{title:'繊細の極致',personality:'A型の気遣いと魚座の共感力——感受性のダブルパンチ。他人の感情を自分のことのように感じ取ってしまう。映画で泣き、他人の悩みで眠れなくなり、美しいものに心が震える。この繊細さは宝物。',love:'恋愛では、相手の痛みに寄り添えるからこそ深く愛されるタイプ。ただし共依存になりやすい。相手の問題を全部引き受けてしまう前に、「私は私」の境界線を持つことが大事。',talent:'芸術、看護、カウンセリング——人の心に触れる全ての分野で輝く。あなたの共感力は、それだけで人を救う力がある。',keys:['共感の天才','境界線を持つ','心に触れる力']},
+
+// ===== B型 =====
+B_aries:{title:'嵐のパイオニア',personality:'B型の自由さと牡羊座の突進力——止められない。やりたいと思ったら即行動。周りの反対なんて聞こえない。この爆発的なエネルギーは、成功するときも壮大だし、失敗するときも盛大。でもあなたは失敗からの立ち直りも異常に早い。',love:'恋愛では「好き！」の瞬間が全て。燃え上がるのも早いし、冷めるのも早い——と思われがちだけど、本気の恋は別。「この人だ」と確信した相手への情熱は、驚くほど持続する。',talent:'起業家タイプ。ゼロからイチを生み出す爆発力が桁違い。既存のルールに収まれない人。',keys:['爆発的行動力','本気の持続力','ゼロイチの天才']},
+B_taurus:{title:'マイペースの帝王',personality:'B型の自由さと牡牛座の頑固さ——自分のペースを絶対に崩さない人。他人にどう思われようと、自分が「いい」と思ったものを愛する。この揺るがなさが、独特の魅力になっている。',love:'恋愛では、自分の世界に入ってきてくれる人を求める。あなたの趣味、あなたのこだわり、あなたのペース——それを理解して一緒に楽しんでくれる人が運命の相手。',talent:'アーティスト気質。自分だけの審美眼を持っていて、それに基づくアウトプットは独創的。クリエイター、料理人、職人向き。',keys:['揺るがない美学','マイペース最強','独自の審美眼']},
+B_gemini:{title:'知的トリックスター',personality:'B型の型破りさと双子座の知性——会話の天才。予想外の角度から話を展開して、相手を驚かせ、笑わせ、考えさせる。退屈させることが物理的に不可能な人。',love:'恋愛では「面白い人」に心を動かされる。真面目な告白より、意表を突く一言でキュンとする。ただし自分が飽きるのも早いから、知的な刺激を与え続けてくれる相手が必要。',talent:'コミュニケーションの化け物。営業、MC、企画職——「人を動かす言葉」を生み出す力が異常に高い。',keys:['予想外の会話術','知的な刺激欲','言葉で世界を動かす']},
+B_cancer:{title:'気まぐれな慈愛',personality:'B型の自由さと蟹座の母性——ワイルドなのに、根っこが優しい。普段は好きに生きているけれど、大切な人が困っていると全力で駆けつける。このギャップに心を掴まれる人が多い。',love:'恋愛では「追いたい」のに「守りたい」が同時に発動する。自由に恋をしたいのに、好きな人のことが心配で離れられない——この葛藤が可愛い。そしてその葛藤が、あなたの恋を深くしている。',talent:'ムードメーカーかつ精神的支柱。チームを盛り上げつつ、困っている人には個別にフォロー。マネージャー向きの資質。',keys:['ワイルドな優しさ','自由と守護の葛藤','頼れるムードメーカー']},
+B_leo:{title:'型破りなスター',personality:'B型の自由さと獅子座のカリスマ性——規格外の存在感。ルールに縛られず、自分だけの輝き方を見つけている。「普通」に収まることを本能的に拒否するタイプ。',love:'恋愛では、あなたを「すごいね」と讃えてくれる人より、「面白いね」と笑ってくれる人が合う。一緒にバカをやれて、でもお互いを尊敬し合える関係が理想。',talent:'エンターテイナー。YouTuber、パフォーマー、起業家——注目を集めて人を巻き込む力が桁違い。舞台の上が似合う人。',keys:['規格外の存在感','面白がってくれる人','巻き込み力']},
+B_virgo:{title:'反骨の精密機械',personality:'B型の反骨精神と乙女座の緻密さ——常識を疑いつつ、やることは完璧にこなす。「ルールは嫌いだけど、仕事は完璧にやる」というスタンス。この矛盾が周りを驚かせる。',love:'恋愛では、見た目に惑わされない冷静な目を持っている。中身をしっかり見て判断する。第一印象より、何度か会ってからの方が好きになるタイプ。スロースターターの恋。',talent:'品質にこだわりながら型にはまらない発想ができる。クリエイティブディレクター、プロダクトデザイナー向きの才能。',keys:['反骨×精密','中身重視の恋','こだわりの独創性']},
+B_libra:{title:'自由と調和のダンサー',personality:'B型の奔放さと天秤座のバランス感覚——自由に振る舞っているように見えて、実は周りの空気を読んでいる。好き勝手やっているのに嫌われない——このバランス感覚は天性のもの。',love:'恋愛では、軽く見られがちだけど実は関係性を大切にする。ふざけて見えても、相手への配慮は常に忘れない。「遊んでるようで真剣」——そのギャップに惹かれる人が多い。',talent:'人脈構築の天才。誰とでも仲良くなれるのに、ちゃんと深い信頼関係も築ける。ネットワーカー、プロデューサー向き。',keys:['好き勝手なのに嫌われない','遊びの中の真剣','人脈の天才']},
+B_scorpio:{title:'野生の哲学者',personality:'B型の本能的な行動力と蠍座の深い思考——行動は直感的なのに、考えていることは異常に深い。表面的なことに興味がなく、物事の本質を貫く。相手の嘘は一瞬で見抜くし、自分にも嘘をつかない。',love:'恋愛では「全部か、ゼロか」。中途半端な関係は受け付けない。好きになったらとことん深く——でも裏切られたら一瞬で切る。この潔さが怖がられることもあるけど、本気の相手にはどこまでも優しい。',talent:'本質を見抜く力と行動力の組み合わせ。ジャーナリスト、探偵、投資家——真実を掘り当てる能力が突出。',keys:['本能×深い思考','全力の愛','本質を掘り当てる']},
+B_sagittarius:{title:'自由の化身',personality:'B型の奔放さと射手座の冒険心——もうこれは自由そのもの。束縛を嫌い、ルールに反発し、常に新しい体験を求める。「同じ日は二度と要らない」タイプ。',love:'恋愛では、一緒に冒険できる人が好き。安定より刺激。退屈な関係は続かない。ただし「自由が好き＝愛情がない」ではない。好きな人のためなら地球の裏側にも行く。',talent:'旅行家、フリーランス、冒険家——場所や時間に縛られない生き方が一番才能を活かせる。枠にはめないで。',keys:['自由の極致','冒険の恋','枠にはまらない']},
+B_capricorn:{title:'反骨の実力者',personality:'B型の独自路線と山羊座の実行力——自分のやり方で結果を出す人。周りの忠告は聞かないけど、気づいたら一番高い場所にいる。独学で何かを極めるタイプに多い組み合わせ。',love:'恋愛では、対等な関係を求める。上下関係が生まれた瞬間に息苦しくなる。お互いを尊敬し合い、お互いの道を歩きながら隣にいてくれる人が理想。',talent:'独立起業家タイプ。既存のルートでは出世しにくいけれど、自分の道を作ると無双する。独自の成功法則を持っている。',keys:['独自路線で頂点','対等な関係','自分の道で無双']},
+B_aquarius:{title:'異端児の王',personality:'B型の自由さと水瓶座の独創性——常識の外側に生きている人。周りから「変わってる」と言われることに、内心ちょっと誇りを感じている。10年後に「あの人が正しかった」と言われるタイプ。',love:'恋愛では、普通の恋愛の形に興味がない。「付き合う」「デートする」の定義すら独自に解釈する。あなたの世界観を面白がってくれる人が運命の相手。',talent:'発明家、プログラマー、アーティスト——「まだ世界に存在しないもの」を作り出す力がある。未来を先取りする人。',keys:['時代の先駆者','独自の恋愛定義','存在しないものを作る']},
+B_pisces:{title:'風来坊の癒し人',personality:'B型の気ままさと魚座の優しさ——自由に漂いながら、出会った人を癒していく。風のように現れて、温かさを残して去っていく——そんな不思議な存在感。掴めないけど忘れられない人。',love:'恋愛では、運命的な出会いを信じるロマンチスト。計算や打算とは無縁の恋をする。好きになるきっかけは理屈では説明できない——「ただ、なんとなく」。その直感は驚くほど正しい。',talent:'ヒーラー、アーティスト、旅人——自由に生きながら人を癒す。組織に属さない生き方が最もあなたらしい。',keys:['掴めない魅力','直感の恋','自由な癒し手']},
+
+// ===== O型 =====
+O_aries:{title:'最強のリーダー',personality:'O型のリーダーシップと牡羊座の行動力——48パターンの中で最も「先頭に立つ力」が強い組み合わせ。決断が速く、行動が速く、周りを巻き込む力が桁違い。生まれながらの大将タイプ。',love:'恋愛では、追いかける恋に燃える。手に入りにくい相手ほど心が動く。ただし手に入った後の「維持」が課題。征服欲と愛情は別物だと気づいたとき、恋愛の質が一段上がる。',talent:'経営者、チームリーダー、起業家——人を率いて結果を出す才能に溢れている。大きな舞台ほど力を発揮する。',keys:['生まれながらの大将','追う恋','大舞台で覚醒']},
+O_taurus:{title:'大地の王者',personality:'O型の包容力と牡牛座の安定感——頼りがいの塊。この人に任せておけば大丈夫——そう思わせる存在感がある。動じない、ブレない、約束を守る。人望が厚く、自然と人が集まってくる。',love:'恋愛では、大きな愛情で相手を包み込む。「俺/私が守る」タイプ。ただし好きになるまでに時間がかかる。でも一度好きになったら、岩のように動かない。その安心感は他の誰にも出せない。',talent:'管理職、農業、不動産——「土台を作り、守り、育てる」全ての仕事に適性がある。長期的に価値を生み出すタイプ。',keys:['頼りがいの塊','岩の一途','土台を作る力']},
+O_gemini:{title:'カリスマ的社交家',personality:'O型の親分肌と双子座の話術——人を惹きつけ、楽しませ、動かす。パーティーの中心にいるのはいつもあなた。情報通で話題が豊富、さらにリーダーシップもあるから、自然と影響力が生まれる。',love:'恋愛では、楽しい人を好きになる。「一緒にいて退屈しない」が最低条件。ただし選択肢が多すぎて迷いやすい面も。「この人だ」と決めたら、浮気心を封印する覚悟を。',talent:'司会者、営業マネージャー、インフルエンサー——「人を動かす話術」と「まとめる力」の両方を持つ希少種。',keys:['場の中心','選択肢の多さ','話術×統率力']},
+O_cancer:{title:'家族想いの守護神',personality:'O型の包容力と蟹座の母性——「大切な人を守りたい」という気持ちが異常に強い。家族、友人、チーム——自分が守ると決めた人たちのためなら、何でもする。この献身性が、あなたの最大の魅力。',love:'恋愛では、恋人を「家族」のように大切にする。温かくて安心感のある関係を築くのが得意。ただし世話を焼きすぎて相手の自立を妨げないように注意。愛情と過保護は違う。',talent:'教育者、看護師、チームマネージャー——人を育て、守り、成長を見守る仕事に天性の適性がある。',keys:['守護の本能','家族のような恋','育てる才能']},
+O_leo:{title:'太陽のカリスマ',personality:'O型のリーダーシップと獅子座の華やかさ——最も「カリスマ」という言葉が似合う組み合わせ。存在するだけで場の空気が変わる。自信に満ちていて、それが嫌味にならない。人がついていきたくなるオーラがある。',love:'恋愛では、ドラマティックな展開を好む。サプライズ好き、記念日重視、特別な体験を共有したい。平凡な日常を嫌うわけではないけれど、「特別な瞬間」を一緒に作れる相手が最高。',talent:'経営者、政治家、エンターテイナー——大勢の前に立ったとき、最も輝く。スケールの大きなステージを選んで。',keys:['天性のカリスマ','ドラマティックな恋','大勢を導く力']},
+O_virgo:{title:'実務の王',personality:'O型の決断力と乙女座の分析力——「大きな絵を描きつつ、細部まで詰められる」稀有なタイプ。ビジョンと実務の両方をこなせるから、プロジェクトの成功率が高い。',love:'恋愛では、直感的に「この人だ」と感じつつも、冷静に相性を分析している。頭と心の両方が「OK」を出した相手にだけ心を開く。だから選択ミスが少ない。',talent:'COO（最高執行責任者）タイプ。ビジョナリーが描いた夢を現実にする力がある。組織の中で最も頼りにされるポジション。',keys:['ビジョン×実務','頭と心の合意','プロジェクト成功率']},
+O_libra:{title:'平和のリーダー',personality:'O型の統率力と天秤座の調和——争いを起こさずに人を率いることができる。「みんなの意見を聞いた上で、最善の決断をする」リーダー。独裁ではなく民主的に導くタイプ。',love:'恋愛では、対等で美しい関係を求める。支配もされたくないし、支配もしたくない。パートナーシップとしてベストな形を、ふたりで作っていきたい。',talent:'外交官、プロデューサー、マネージャー——利害の異なる人々をまとめ上げる力。対立を調和に変える手腕。',keys:['民主的リーダー','対等なパートナー','対立を調和に']},
+O_scorpio:{title:'沈黙の支配者',personality:'O型の統率力と蠍座の洞察力——表面は穏やかに見えるのに、実は場を完全にコントロールしている。何も言わなくても、あなたの存在感が空気を支配する。カリスマの中でも最もミステリアスなタイプ。',love:'恋愛では、深い絆を求める。表面的な関係には一切興味がない。全身全霊で愛し、全身全霊で愛されたい。この濃さについてこられる相手は少ないけれど、見つけたら一生モノ。',talent:'投資家、経営者、心理職——人の本質を見抜きながら、大きな決断を下す能力。静かに世界を動かす人。',keys:['ミステリアスな支配力','一生モノの愛','静かに世界を動かす']},
+O_sagittarius:{title:'冒険のリーダー',personality:'O型のリーダーシップと射手座の冒険心——「みんなで新しい場所へ行こう！」とチームを率いる存在。一人でも冒険できるけど、仲間がいるともっと楽しい。そしてあなたについていくと本当に面白い場所に辿り着く。',love:'恋愛では、一緒に成長できる人を求める。同じ場所に留まるのは苦手だから、一緒に進化し続けられるパートナーが理想。旅行好きな相手との相性は抜群。',talent:'ツアーリーダー、新規事業開発、探検家——「未知を切り拓きながらチームをまとめる」仕事が天職。',keys:['みんなで冒険','成長する恋','未知を切り拓く']},
+O_capricorn:{title:'頂点を目指す王',personality:'O型の野心と山羊座の忍耐——頂上を目指して、着実に、しかし確実に登り続ける。途中で脱落する人を横目に、あなただけは最後まで歩き続ける。そして気づいたら頂点にいる。',love:'恋愛では、パートナーに求める水準が高い。自分と同じくらい努力できる人、自分の野心を理解してくれる人。ただし「条件」で選ばず「人間性」で選ぶことが、幸せへの近道。',talent:'CEO、官僚、建築家——長期ビジョンを持ち、巨大な組織やプロジェクトを率いる力がある。トップに立つために生まれた人。',keys:['頂点への執念','条件より人間性','長期ビジョン']},
+O_aquarius:{title:'革命を率いる者',personality:'O型の統率力と水瓶座の革新性——古い仕組みを壊し、新しい秩序を作る。単なる異端児ではなく、ビジョンを掲げて人を巻き込める。「こっちの方が面白いよ」と笑いながら世界を変える。',love:'恋愛では、型にはまらない関係を好む。「彼氏彼女」の枠より「最高のパートナー」でいたい。関係の形は自分たちで決める。世間の目は気にしない。',talent:'起業家、テクノロジスト、社会活動家——「世の中を変えたい」という衝動を実際に形にできる力がある。',keys:['笑顔の革命家','型にはまらない関係','世界を変える力']},
+O_pisces:{title:'全てを包む海',personality:'O型の包容力と魚座の共感力——誰でも受け入れ、誰の味方にもなれる。あなたのそばにいると、人は自然と心を開いてしまう。その包容力は48パターン中トップクラス。',love:'恋愛では、相手の全てを受け入れようとする。長所も短所も、過去も未来も。この懐の深さが、相手に「この人しかいない」と思わせる。ただし自分を犠牲にしすぎないで。',talent:'カウンセラー、社会福祉、宗教家——人を癒し、導き、包み込む仕事が天職。あなたの存在自体が人を救う。',keys:['無限の包容力','全てを受け入れる恋','存在が救い']},
+
+// ===== AB型 =====
+AB_aries:{title:'矛盾の天才',personality:'AB型の二面性と牡羊座の衝動——クールに見えたかと思えば急に情熱的になる。周りからは「読めない人」と思われがち。でもそれは欠点じゃなく、状況に応じて最適な自分を出せる適応力の高さ。',love:'恋愛では、自分でも自分の気持ちがわからなくなることがある。好きなのか好きじゃないのか、追いたいのか引きたいのか。この揺れ動きが相手を振り回すこともあるけど、本気で惹かれた人の前では嘘がつけなくなる。その瞬間があなたの「答え」。',talent:'クリエイティブディレクター、コンサルタント——冷静な分析と大胆な発想を瞬時に切り替えられる。普通の人には出せないアウトプットを生む。',keys:['読めない魅力','本気の瞬間','冷静と情熱の切り替え']},
+AB_taurus:{title:'ミステリアスな審美家',personality:'AB型の知性と牡牛座の五感——独自の美的感覚を持つ人。流行に流されず、自分だけの「美しい」を追求する。他の誰とも被らないセンスは、実はこの組み合わせだからこそ生まれるもの。',love:'恋愛では、なかなか心を開かない。信用するまでに時間がかかるし、自分の内面を見せることに抵抗がある。でもひとたび心を開くと、とても温かい。そのギャップに落ちる人が続出する。',talent:'キュレーター、バイヤー、建築家——「選ぶ目」が最高に鋭い。世の中にあるものの中から、本当に価値あるものだけを選び出す力。',keys:['独自の美意識','ギャップの魅力','選ぶ目の鋭さ']},
+AB_gemini:{title:'万華鏡の知性',personality:'AB型の二面性と双子座の多面性——何人もの自分を使い分ける。それは八方美人ではなく、相手や場面に合わせて最適なコミュニケーションができるということ。話術は48パターン中トップ。',love:'恋愛では、知的な駆け引きを楽しむ。ストレートに「好き」と言うのは苦手——でも態度には出ている。あなたの微妙なサインを読み取ってくれる人が、相性抜群の相手。',talent:'翻訳者、外交官、マルチタレント——複数の世界を行き来しながら、それぞれで力を発揮できる。ひとつに絞る必要はない。',keys:['最強の話術','サインを読める人','複数世界の住人']},
+AB_cancer:{title:'クールな母性',personality:'AB型のクールさと蟹座の温かさ——冷たく見えて実は誰よりも優しい。その温かさを表に出すのが苦手なだけ。不器用な優しさが滲み出る瞬間が、周りの人の心に刺さる。',love:'恋愛では、好きな人の前ほどクールに振舞ってしまう。本当は心の中で大騒ぎしているのに、外には出さない。でも行動にはちゃんと現れている——さりげない気遣いが、あなたの最大のラブレター。',talent:'医療従事者、教育者、UXデザイナー——「人のためを思う心」と「冷静な判断力」を両立できる。感情に流されず人を助ける力。',keys:['不器用な優しさ','行動のラブレター','冷静に人を助ける']},
+AB_leo:{title:'孤高のカリスマ',personality:'AB型の独自性と獅子座のカリスマ性——みんなと同じ輝き方はしない。あなただけの光り方で、あなただけのファンを集める。大衆受けは狙わないのに、なぜか惹かれる人が絶えない。',love:'恋愛では、対等な知性を持つ相手に惹かれる。見た目やステータスより「この人の考え方は面白い」が入口。そしてその知性で自分を認めてくれたとき、初めてプライドの壁を下ろす。',talent:'クリエイター、デザイナー、アーティスト——独自の世界観を持ち、それを表現する力がある。「量産型」にはなれない人。',keys:['独自の輝き','知性で心を開く','量産型にならない']},
+AB_virgo:{title:'冷徹な分析の美学',personality:'AB型の客観性と乙女座の分析力——48パターン中、最も冷静に物事を見られる組み合わせ。感情に左右されず、データとロジックで判断する。ただし、その冷静さの内側には温かい心がちゃんとある。',love:'恋愛では、「好き」という感情すら分析しようとする。「なぜこの人が好きなのか」を理論的に説明できないと不安になる。でも恋は理屈じゃない。たまには分析を止めて、ただ「好き」を感じてみて。',talent:'データサイエンティスト、研究者、品質管理——「正確さ」と「客観性」が求められるすべての分野で無敵。',keys:['最高の冷静さ','分析を止める恋','精度の極致']},
+AB_libra:{title:'知的な貴公子/貴婦人',personality:'AB型の洗練さと天秤座の美意識——48パターン中、最も「上品」な組み合わせ。言葉遣い、所作、センス——全てが洗練されている。近寄りがたいと思われることもあるけれど、話してみると意外と気さくで驚かれる。',love:'恋愛では、美的感覚の合う相手を求める。一緒にいるときの「絵」が美しくないと嫌。デートの場所、ふたりの過ごし方——全てに「美意識」が反映される。',talent:'ブランドマネージャー、スタイリスト、外交官——「美しさ」と「知性」を武器にする全ての場面で輝く。',keys:['究極の洗練','美意識の恋','上品な親しみやすさ']},
+AB_scorpio:{title:'謎の策士',personality:'AB型の二面性と蠍座の深さ——最も「底が見えない」組み合わせ。何を考えているかわからない。でもその謎めいた雰囲気が、強烈な吸引力を生んでいる。あなたを理解しようとする人は多いが、本当に理解できる人は少ない。',love:'恋愛では、心を開くまでに非常に長い時間がかかる。でも一度心を開いた相手への愛情は底なし。ただし裏切りへの反応は全星座×血液型の中で最も苛烈。信頼関係が全ての土台。',talent:'心理学者、戦略家、プロファイラー——人間の深層を読み、それを戦略に活かす力がある。チェスのような思考。',keys:['底が見えない魅力','信頼が全て','チェス的思考']},
+AB_sagittarius:{title:'知的遊牧民',personality:'AB型の知性と射手座の冒険心——知的好奇心の赴くままに、世界を旅する。物理的な旅だけでなく、知識の旅も。ひとつの分野に留まらず、複数の世界を渡り歩く。そのどこでも「面白い人」と思われる。',love:'恋愛では、束縛を最も嫌うタイプ。自由でいたいし、相手も自由でいてほしい。ただし「自由」と「無関心」は違う。自由なのに深くつながっている——そんな関係が理想。',talent:'ライター、研究者、コンサルタント——複数の分野を横断して新しい知見を生み出す力。異分野融合の達人。',keys:['知識の冒険者','自由で深い関係','異分野融合']},
+AB_capricorn:{title:'戦略的野心家',personality:'AB型の冷静さと山羊座の野心——感情に流されず、長期的な戦略を立てて確実に成果を出す。周りがパニックになっている状況でも、あなただけは冷静に最善手を打てる。その姿は頼もしくもあり、少し怖くもある。',love:'恋愛では、パートナー選びも戦略的。ただしそれは「打算」ではなく「慎重さ」。間違った相手を選ぶ時間がもったいないと知っているから。でもたまには直感に従ってみても。理屈を超えた出会いがあるかもしれない。',talent:'投資家、経営コンサルタント、軍略家——冷静な分析と長期戦略で結果を出す。感情に流されない判断力は最大の武器。',keys:['冷静な戦略家','慎重なパートナー選び','長期で勝つ']},
+AB_aquarius:{title:'次元の違う天才',personality:'AB型の独自性と水瓶座の革新性——48パターンの中で最も「天才」に近い組み合わせ。常人には理解できない発想を持ち、それを冷静に実行に移す力がある。10年後に時代があなたに追いつく。',love:'恋愛では、普通の人には退屈してしまう。知的レベルが合い、かつ自分の世界観を面白がってくれる人でないと関係が続かない。条件が厳しいから出会いは少ないが、出会えたら最高のパートナーになる。',talent:'発明家、理論物理学者、未来予測——「まだ誰も見ていない世界」を見る力がある。時代を作る側の人。',keys:['時代を先取り','知的適合の恋','見えない世界を見る']},
+AB_pisces:{title:'幻想の語り部',personality:'AB型のクールさと魚座の感受性——冷静に見えるのに、感受性は誰よりも豊か。この矛盾が、独特の芸術的センスを生む。現実と夢の境界線を自由に行き来できる不思議な人。',love:'恋愛では、相手を理想化しやすい。「この人は特別」と感じると、現実には存在しない姿を相手に重ねてしまうことがある。目の前の「そのままの相手」を愛せるかが課題。',talent:'小説家、映画監督、イラストレーター——内面世界を形にする芸術的才能が突出。あなたの作品は人の心を深い場所で揺さぶる。',keys:['現実と夢の間','そのままを愛す','心を揺さぶる才能']}
+};
+
+// ===== Divine =====
+function divine() {
+  if (!selectedBlood) { alert('血液型を選んでください'); return; }
+  const m=parseInt(document.getElementById('birthMonth').value);
+  const d=parseInt(document.getElementById('birthDay').value);
+  const sign=getZodiac(m,d);
+  const key=selectedBlood+'_'+sign;
+  const data=D[key];
+  const si=SIGN_INFO[sign];
+
+  document.getElementById('loadingOverlay').classList.add('active');
+  setTimeout(()=>{
+    document.getElementById('loadingOverlay').classList.remove('active');
+    document.getElementById('formSection').style.display='none';
+    const rs=document.getElementById('resultSection');
+    rs.style.display='block';
+
+    document.getElementById('resultIcon').textContent=si.icon;
+    document.getElementById('resultName').textContent=data.title;
+    document.getElementById('resultSub').textContent=selectedBlood+'型 × '+si.name;
+
+    let html='';
+    html+='<h3>✦ あなたの本当の姿</h3><p>'+data.personality+'</p>';
+    html+='<h3>✦ 恋愛の傾向</h3><p>'+data.love+'</p>';
+    html+='<h3>✦ 隠れた才能</h3><p>'+data.talent+'</p>';
+    html+='<div class="keyword-tags">';
+    data.keys.forEach(k=>{html+='<span>✦ '+k+'</span>';});
+    html+='</div>';
+    document.getElementById('resultBody').innerHTML=html;
+    rs.scrollIntoView({behavior:'smooth',block:'start'});
+  },2000);
+}
+
+function retry() {
+  document.getElementById('resultSection').style.display='none';
+  document.getElementById('formSection').style.display='block';
+  selectedBlood=null;
+  document.querySelectorAll('#bloodBtns button').forEach(b=>b.classList.remove('active'));
+  document.getElementById('formSection').scrollIntoView({behavior:'smooth',block:'start'});
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>星読み師♦るなの星座占い｜あなたの星が語る物語</title>
+<meta name="description" content="生年月日から、あなたの星座が持つ本質・恋愛傾向・運命の流れを読み解きます。星読み師♦るなが贈る、本格星座占い。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Shippori+Mincho:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --bg-deep: #0a0b1a;
+  --bg-card: #111333;
+  --bg-card-hover: #181b44;
+  --gold: #d4a853;
+  --gold-light: #f0d68a;
+  --gold-dim: #a07c33;
+  --silver: #c8cfe0;
+  --text: #e0e4f0;
+  --text-dim: #8a8faa;
+  --accent-pink: #c77dba;
+  --accent-blue: #6b8cce;
+  --cta-phone: #e8734a;
+  --cta-chat: #7b6bce;
+  --cta-line: #06c755;
+  --radius: 14px;
+  --font-body: 'Zen Kaku Gothic New', sans-serif;
+  --font-display: 'Shippori Mincho', serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-deep);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== Star field background ===== */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(1.5px 1.5px at 10% 15%, rgba(255,255,255,.6) 50%, transparent 50%),
+    radial-gradient(1px 1px at 25% 35%, rgba(255,255,255,.4) 50%, transparent 50%),
+    radial-gradient(1.2px 1.2px at 45% 8%, rgba(255,255,255,.5) 50%, transparent 50%),
+    radial-gradient(1px 1px at 60% 60%, rgba(255,255,255,.3) 50%, transparent 50%),
+    radial-gradient(1.8px 1.8px at 75% 25%, rgba(255,255,255,.5) 50%, transparent 50%),
+    radial-gradient(1px 1px at 85% 75%, rgba(255,255,255,.4) 50%, transparent 50%),
+    radial-gradient(1.5px 1.5px at 30% 80%, rgba(255,255,255,.35) 50%, transparent 50%),
+    radial-gradient(1px 1px at 50% 45%, rgba(255,255,255,.3) 50%, transparent 50%),
+    radial-gradient(1.3px 1.3px at 90% 10%, rgba(255,255,255,.45) 50%, transparent 50%),
+    radial-gradient(1px 1px at 15% 55%, rgba(255,255,255,.25) 50%, transparent 50%),
+    radial-gradient(1.4px 1.4px at 70% 90%, rgba(255,255,255,.4) 50%, transparent 50%),
+    radial-gradient(1px 1px at 5% 90%, rgba(255,255,255,.3) 50%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+  animation: twinkle 6s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  0% { opacity: .6; }
+  100% { opacity: 1; }
+}
+
+/* ===== Layout ===== */
+.wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ===== Header ===== */
+header {
+  text-align: center;
+  padding: 56px 0 32px;
+}
+
+header .icon {
+  font-size: 40px;
+  display: block;
+  margin-bottom: 12px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+header h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 26px;
+  color: var(--gold-light);
+  letter-spacing: .08em;
+  margin-bottom: 6px;
+}
+
+header .sub {
+  font-size: 13px;
+  color: var(--text-dim);
+  letter-spacing: .12em;
+}
+
+header .intro {
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--silver);
+  line-height: 1.9;
+}
+
+/* ===== Form ===== */
+.form-section {
+  background: linear-gradient(135deg, var(--bg-card) 0%, #151840 100%);
+  border: 1px solid rgba(212,168,83,.15);
+  border-radius: var(--radius);
+  padding: 32px 24px;
+  margin-bottom: 24px;
+}
+
+.form-section h2 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.date-inputs {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  margin-bottom: 24px;
+}
+
+.date-inputs .field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.date-inputs label {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+  letter-spacing: .06em;
+}
+
+.date-inputs select,
+.date-inputs input[type="number"] {
+  appearance: none;
+  -webkit-appearance: none;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  padding: 10px 12px;
+  text-align: center;
+  outline: none;
+  transition: border-color .2s;
+}
+
+.date-inputs select:focus,
+.date-inputs input:focus {
+  border-color: var(--gold);
+}
+
+.btn-divine {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--gold-dim), var(--gold), var(--gold-light));
+  color: var(--bg-deep);
+  border: none;
+  border-radius: 10px;
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  cursor: pointer;
+  transition: transform .15s, box-shadow .15s;
+}
+
+.btn-divine:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(212,168,83,.3);
+}
+
+.btn-divine:active {
+  transform: translateY(0);
+}
+
+/* ===== Loading ===== */
+.loading-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10,11,26,.92);
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.loading-overlay.active {
+  display: flex;
+}
+
+.loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 3px solid rgba(212,168,83,.15);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.loading-overlay p {
+  font-family: var(--font-display);
+  color: var(--gold-light);
+  font-size: 15px;
+  letter-spacing: .1em;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: .5; }
+  50% { opacity: 1; }
+}
+
+/* ===== Result ===== */
+.result-section {
+  display: none;
+  animation: fadeUp .6s ease-out;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.result-card {
+  background: linear-gradient(160deg, var(--bg-card) 0%, #13163f 50%, #1a1440 100%);
+  border: 1px solid rgba(212,168,83,.2);
+  border-radius: var(--radius);
+  padding: 32px 24px;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.result-card::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, rgba(212,168,83,.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.result-sign-icon {
+  text-align: center;
+  font-size: 52px;
+  margin-bottom: 8px;
+}
+
+.result-sign-name {
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 24px;
+  color: var(--gold-light);
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.result-date-range {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-bottom: 24px;
+  letter-spacing: .08em;
+}
+
+.result-body h3 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: var(--gold);
+  margin-bottom: 8px;
+  margin-top: 20px;
+}
+
+.result-body h3:first-child {
+  margin-top: 0;
+}
+
+.result-body p {
+  font-size: 14.5px;
+  line-height: 1.85;
+  color: var(--silver);
+}
+
+.result-body .keyword-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.result-body .keyword-tags span {
+  background: rgba(212,168,83,.1);
+  border: 1px solid rgba(212,168,83,.2);
+  border-radius: 20px;
+  padding: 4px 14px;
+  font-size: 12px;
+  color: var(--gold-light);
+}
+
+/* ===== Divider ===== */
+.divider {
+  text-align: center;
+  margin: 32px 0;
+  color: var(--text-dim);
+  font-size: 13px;
+  position: relative;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 30%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,168,83,.25), transparent);
+}
+
+.divider::before { left: 0; }
+.divider::after { right: 0; }
+
+/* ===== CTA Section ===== */
+.cta-section {
+  margin-bottom: 48px;
+}
+
+.cta-section .cta-lead {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--gold-light);
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.cta-section .cta-sub {
+  font-size: 13px;
+  color: var(--text-dim);
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.cta-card {
+  display: block;
+  text-decoration: none;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 14px;
+  border: 1px solid rgba(255,255,255,.06);
+  transition: transform .15s, border-color .2s, box-shadow .2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.3);
+}
+
+.cta-card .cta-icon {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.cta-card .cta-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.cta-card .cta-desc {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.cta-card .cta-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+/* Phone CTA */
+.cta-phone { border-color: rgba(232,115,74,.2); }
+.cta-phone:hover { border-color: rgba(232,115,74,.4); }
+.cta-phone .cta-title { color: #f0a080; }
+.cta-phone .cta-badge {
+  background: rgba(232,115,74,.15);
+  color: #f0a080;
+}
+
+/* Chat CTA */
+.cta-chat { border-color: rgba(123,107,206,.2); }
+.cta-chat:hover { border-color: rgba(123,107,206,.4); }
+.cta-chat .cta-title { color: #a99de0; }
+.cta-chat .cta-badge {
+  background: rgba(123,107,206,.15);
+  color: #a99de0;
+}
+
+/* LINE CTA */
+.cta-line { border-color: rgba(6,199,85,.15); }
+.cta-line:hover { border-color: rgba(6,199,85,.3); }
+.cta-line .cta-title { color: #4ddb82; }
+.cta-line .cta-badge {
+  background: rgba(6,199,85,.12);
+  color: #4ddb82;
+}
+
+/* ===== Footer ===== */
+footer {
+  text-align: center;
+  padding: 24px 0 48px;
+  font-size: 11px;
+  color: var(--text-dim);
+  line-height: 1.8;
+}
+
+footer .pr-label {
+  display: inline-block;
+  padding: 2px 10px;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 4px;
+  font-size: 10px;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+  letter-spacing: .06em;
+}
+
+/* ===== Retry ===== */
+.btn-retry {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background: transparent;
+  border: 1px solid rgba(212,168,83,.3);
+  border-radius: 10px;
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-size: 15px;
+  cursor: pointer;
+  transition: background .2s;
+  margin-bottom: 32px;
+}
+
+.btn-retry:hover {
+  background: rgba(212,168,83,.06);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 380px) {
+  .wrapper { padding: 0 14px; }
+  header h1 { font-size: 22px; }
+  .form-section { padding: 24px 16px; }
+  .result-card { padding: 24px 16px; }
+}
+
+/* ===== Back Nav ===== */
+.back-nav { position: relative; z-index: 10; text-align: center; padding: 16px 0 0; }
+.back-nav a { display: inline-block; font-family: var(--font-display); font-size: 13px; color: var(--gold); text-decoration: none; letter-spacing: .08em; padding: 6px 16px; border: 1px solid rgba(212,168,83,.2); border-radius: 20px; transition: border-color .2s, background .2s; }
+.back-nav a:hover { border-color: rgba(212,168,83,.4); background: rgba(212,168,83,.06); }
+
+</style>
+</head>
+<body>
+<div class="back-nav"><a href="index.html">✦ 占いの館に戻る</a></div>
+
+<!-- ===== Loading Overlay ===== -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-spinner"></div>
+  <p>あなたの星を読んでいます…</p>
+</div>
+
+<div class="wrapper">
+
+  <!-- ===== Header ===== -->
+  <header>
+    <span class="icon">🔮</span>
+    <h1>星読み師♦るなの星座占い</h1>
+    <p class="sub">— 星から、あなたの物語を —</p>
+    <p class="intro">
+      生まれた日に宿る星の力。<br>
+      あなたの星座が語る本質、恋の傾向、<br>
+      そしてこの先の運命の流れを読み解きます。
+    </p>
+  </header>
+
+  <!-- ===== Form ===== -->
+  <section class="form-section" id="formSection">
+    <h2>✦ 生年月日を教えてください</h2>
+    <div class="date-inputs">
+      <div class="field">
+        <label>年</label>
+        <select id="birthYear"></select>
+      </div>
+      <div class="field">
+        <label>月</label>
+        <select id="birthMonth"></select>
+      </div>
+      <div class="field">
+        <label>日</label>
+        <select id="birthDay"></select>
+      </div>
+    </div>
+    <button class="btn-divine" id="btnDivine" onclick="divine()">星を読む</button>
+  </section>
+
+  <!-- ===== Result ===== -->
+  <section class="result-section" id="resultSection">
+    <div class="result-card">
+      <div class="result-sign-icon" id="resultIcon"></div>
+      <div class="result-sign-name" id="resultName"></div>
+      <div class="result-date-range" id="resultRange"></div>
+      <div class="result-body" id="resultBody"></div>
+    </div>
+
+    <button class="btn-retry" onclick="retry()">✦ もう一度占う</button>
+
+    <!-- ===== CTA ===== -->
+    <div class="cta-section">
+      <p class="cta-lead">もっと深く知りたいあなたへ</p>
+      <p class="cta-sub">星の導きを、さらに詳しく</p>
+
+      <!-- ココナラ電話占い -->
+      <a class="cta-card cta-phone" href="https://px.a8.net/svt/ejp?a8mat=4AZO4G+FQSSJE+2PEO+C3BAQ" target="_blank" rel="nofollow noopener noreferrer sponsored">
+        <div class="cta-icon">📞</div>
+        <div class="cta-title">プロの占い師に電話で相談する</div>
+        <div class="cta-desc">タロット・霊感・占星術——あなたに合った占い師を選んで、今すぐ本格鑑定。恋愛・仕事・人間関係、なんでも相談OK。</div>
+        <span class="cta-badge">新規登録で3,000円分無料 ✦ 24時間OK</span>
+      </a>
+      <img border="0" width="1" height="1" src="https://www11.a8.net/0.gif?a8mat=4AZO4G+FQSSJE+2PEO+C3BAQ" alt="">
+
+      <!-- ブリランテ -->
+      <a class="cta-card cta-chat" href="https://px.a8.net/svt/ejp?a8mat=4AZO4H+10X056+5SGG+5YRHE" target="_blank" rel="nofollow noopener noreferrer sponsored">
+        <div class="cta-icon">💬</div>
+        <div class="cta-title">チャットで気軽に相談する</div>
+        <div class="cta-desc">電話はちょっと…という方に。チャットで本格鑑定が受けられます。深夜でも、通勤中でも、いつでも。</div>
+        <span class="cta-badge">初回500円分ポイントプレゼント</span>
+      </a>
+      <img border="0" width="1" height="1" src="https://www10.a8.net/0.gif?a8mat=4AZO4H+10X056+5SGG+5YRHE" alt="">
+
+      <!-- LINE -->
+      <a class="cta-card cta-line" href="https://lin.ee/Vg3f2KS" target="_blank" rel="noopener noreferrer">
+        <div class="cta-icon">🌙</div>
+        <div class="cta-title">るなに直接占ってもらう</div>
+        <div class="cta-desc">あなたの悩みに合わせた本格鑑定を無料で体験できます。生年月日と気になることを送るだけ。</div>
+        <span class="cta-badge">無料で本格鑑定を体験する</span>
+      </a>
+    </div>
+
+    <!-- ===== Footer ===== -->
+    <footer>
+      <span class="pr-label">PR</span><br>
+      © 星読み師♦るな<br>
+      本サイトにはアフィリエイト広告が含まれます
+    </footer>
+  </section>
+
+</div>
+
+<script>
+// ===== Date selectors =====
+(function initSelects() {
+  const yS = document.getElementById('birthYear');
+  const mS = document.getElementById('birthMonth');
+  const dS = document.getElementById('birthDay');
+  const now = new Date();
+  const curY = now.getFullYear();
+
+  for (let y = curY; y >= 1940; y--) {
+    const o = document.createElement('option');
+    o.value = y; o.textContent = y;
+    if (y === 2000) o.selected = true;
+    yS.appendChild(o);
+  }
+  for (let m = 1; m <= 12; m++) {
+    const o = document.createElement('option');
+    o.value = m; o.textContent = m;
+    mS.appendChild(o);
+  }
+  function updateDays() {
+    const y = parseInt(yS.value);
+    const m = parseInt(mS.value);
+    const max = new Date(y, m, 0).getDate();
+    const cur = parseInt(dS.value) || 1;
+    dS.innerHTML = '';
+    for (let d = 1; d <= max; d++) {
+      const o = document.createElement('option');
+      o.value = d; o.textContent = d;
+      if (d === Math.min(cur, max)) o.selected = true;
+      dS.appendChild(o);
+    }
+  }
+  yS.addEventListener('change', updateDays);
+  mS.addEventListener('change', updateDays);
+  updateDays();
+})();
+
+// ===== Zodiac determination =====
+function getZodiac(month, day) {
+  const ranges = [
+    { sign: 'capricorn',   start: [1,1],   end: [1,19]  },
+    { sign: 'aquarius',    start: [1,20],  end: [2,18]  },
+    { sign: 'pisces',      start: [2,19],  end: [3,20]  },
+    { sign: 'aries',       start: [3,21],  end: [4,19]  },
+    { sign: 'taurus',      start: [4,20],  end: [5,20]  },
+    { sign: 'gemini',      start: [5,21],  end: [6,21]  },
+    { sign: 'cancer',      start: [6,22],  end: [7,22]  },
+    { sign: 'leo',         start: [7,23],  end: [8,22]  },
+    { sign: 'virgo',       start: [8,23],  end: [9,22]  },
+    { sign: 'libra',       start: [9,23],  end: [10,23] },
+    { sign: 'scorpio',     start: [10,24], end: [11,22] },
+    { sign: 'sagittarius', start: [11,23], end: [12,21] },
+    { sign: 'capricorn',   start: [12,22], end: [12,31] },
+  ];
+  const md = month * 100 + day;
+  for (const r of ranges) {
+    const s = r.start[0] * 100 + r.start[1];
+    const e = r.end[0] * 100 + r.end[1];
+    if (md >= s && md <= e) return r.sign;
+  }
+  return 'capricorn';
+}
+
+// ===== 12 Zodiac Data (るなの世界観) =====
+const ZODIAC = {
+  aries: {
+    name: '牡羊座',
+    icon: '♈',
+    range: '3/21 – 4/19',
+    keywords: ['情熱', '開拓者', '直感', '勇気'],
+    essence: 'あなたの星は「はじまり」を司る炎の星。周りが迷っているとき、あなたはもう走り出している——そんな人。12星座の先頭に立つ牡羊座は、新しい道を切り拓く天性のパイオニアです。',
+    love: '恋に落ちるとき、あなたは考えるより先に心が動いています。好きになったらまっすぐ。駆け引きは苦手だけれど、その裏表のなさが最大の魅力。ただ、燃え上がるのも早い分、「追いかけること」自体が恋だと錯覚しやすい傾向も。本当に大切な人を見つけたら、少しだけ立ち止まって、相手の温度を感じてみて。',
+    destiny: '今のあなたには「新しいステージへの扉」が見えているはず。迷っているなら、それは準備ができている証拠。牡羊座の星が背中を押してくれるタイミングは、思ったより早くやってきます。直感を信じて。'
+  },
+  taurus: {
+    name: '牡牛座',
+    icon: '♉',
+    range: '4/20 – 5/20',
+    keywords: ['安定', '美意識', '五感', '忍耐'],
+    essence: 'あなたの星は「豊かさ」を司る地の星。美しいもの、心地よいもの、確かなもの——五感で世界を味わい尽くす人。派手さより本物を選ぶ目を持っていて、周りからの信頼はとても厚いはず。',
+    love: '恋愛においても、あなたは「本物」を求めます。軽い関係より、深い安心感をくれる相手に心を開く。一度好きになったら簡単には手放さない——その一途さは、あなたの最大の武器。ただ、変化を恐れるあまり「今のままでいい」と自分に言い聞かせてしまうことも。心の奥の小さな違和感には、正直でいてほしい。',
+    destiny: '今あなたが積み上げてきたものは、そろそろ形になるとき。焦る必要はありません。牡牛座の星は、じっくり育てたものにこそ最大の実りをもたらします。自分のペースを信じて。'
+  },
+  gemini: {
+    name: '双子座',
+    icon: '♊',
+    range: '5/21 – 6/21',
+    keywords: ['知性', '好奇心', '言葉', '二面性'],
+    essence: 'あなたの星は「言葉」を司る風の星。頭の回転が速く、どんな場にもすっと馴染める——でも本当のあなたを知っている人は、意外と少ないかもしれません。双子座の魅力は、その底知れなさにあります。',
+    love: '恋愛では「会話」がすべて。一緒にいて退屈しない相手、知的な刺激をくれる相手に強く惹かれます。ただ、器用に振る舞えるがゆえに、本音を隠してしまうことも。「好き」と言葉にすることが、あなたにとって一番の勇気。その一言が、関係を大きく変えることがある。',
+    destiny: '情報の波の中で、今あなたの心に引っかかっているもの——それが次のヒントです。双子座の星は「言葉にしたとき」に道を拓きます。心の中の考えを、誰かに話してみて。'
+  },
+  cancer: {
+    name: '蟹座',
+    icon: '♋',
+    range: '6/22 – 7/22',
+    keywords: ['共感', '母性', '直感', '守護'],
+    essence: 'あなたの星は「つながり」を司る水の星。大切な人の小さな変化にも気づく繊細さ、傷ついた人をそっと包み込む温かさ——蟹座は12星座の中でもっとも深い愛情を持つ星です。',
+    love: '恋をすると、あなたの世界はその人を中心に回りはじめます。相手の幸せが自分の幸せ——でも、与えすぎて自分を後回しにしていないか、ときどき立ち止まって。「大切にされたい」と思うことは、わがままじゃない。あなたがあなたを大切にしたとき、本当にふさわしい人が自然と隣にいるはず。',
+    destiny: '感情の波が大きい時期かもしれません。でもそれは、あなたの心が「次の居場所」を探しているサイン。蟹座の星は、安心できる場所が見つかったとき、最大の力を発揮します。'
+  },
+  leo: {
+    name: '獅子座',
+    icon: '♌',
+    range: '7/23 – 8/22',
+    keywords: ['太陽', '創造', '情熱', 'カリスマ'],
+    essence: 'あなたの星は「輝き」を司る火の星。生まれながらのスター——と言うと大げさに聞こえるかもしれないけれど、あなたがいるだけで場の空気が明るくなるのは事実。その存在感は、努力では手に入らない天性のもの。',
+    love: 'ドラマティックな恋に心が躍る。特別な扱いをしてくれる人、あなたの魅力を正面から認めてくれる人に惹かれやすい。ただ、プライドが邪魔をして素直になれない夜もあるはず。「可愛くない自分」を見せられる相手が、実は一番の運命の人。',
+    destiny: '今、あなたの中にある「これがやりたい」という衝動。それを絶対に無視しないで。獅子座の星は、自分を表現したとき——創造のエネルギーが解放されたとき、最も美しく輝きます。'
+  },
+  virgo: {
+    name: '乙女座',
+    icon: '♍',
+    range: '8/23 – 9/22',
+    keywords: ['分析', '奉仕', '完璧主義', '知性'],
+    essence: 'あなたの星は「調和」を司る地の星。細部に神が宿ることを、あなたは本能で知っている。誰も気づかないところに手をかけ、物事を整える力——それが乙女座の静かな強さです。',
+    love: '心を開くまでに時間がかかる、とよく言われませんか。でもそれは慎重なのではなく、本気だから。好きな人のことを深く理解したいし、中途半端な関係は望まない。あなたが安心して弱さを見せられる相手——その人との関係は、きっと長く続きます。',
+    destiny: '「もっとこうしたい」と思っている領域があるはず。乙女座の星は、細部を磨き上げることで全体を変える力を持っています。小さな改善の積み重ねが、いつの間にか大きな変化になる。'
+  },
+  libra: {
+    name: '天秤座',
+    icon: '♎',
+    range: '9/23 – 10/23',
+    keywords: ['調和', '美', 'バランス', '社交'],
+    essence: 'あなたの星は「美」を司る風の星。争いのない場所を求め、人と人の間を美しく結ぶ——天秤座は12星座の中でもっとも洗練された感性を持つ星。ただ、その穏やかさの裏には、確固とした美学がある。',
+    love: '「素敵な関係」への理想がとても高い。それは悪いことじゃない——でも、理想と現実のギャップに苦しむこともあるかもしれません。完璧な関係なんてどこにもなくて、不完全さを一緒に笑える相手が、あなたにとっての「ベストパートナー」。',
+    destiny: 'どちらを選ぶか迷っている——そんな状況にいませんか。天秤座の星は「比べること」で真実にたどり着きます。ただし、迷いすぎると時期を逃すことも。心の天秤が傾いた方へ、素直に。'
+  },
+  scorpio: {
+    name: '蠍座',
+    icon: '♏',
+    range: '10/24 – 11/22',
+    keywords: ['深淵', '変容', '執念', '神秘'],
+    essence: 'あなたの星は「変容」を司る水の星。表面的なものには興味がない。本質だけを見つめる、鋭く深い目——蠍座の人が放つ静かな迫力は、その「本気度」から生まれています。',
+    love: '好きになったら、とことん。蠍座の愛はオールオアナッシング。中途半端な関係も、嘘も、すぐに見抜いてしまう。だからこそ、心を許せる相手は多くない。でも、一度信頼した人への愛情は、どの星座よりも深い。「裏切られるかも」という恐れを手放せたとき、あなたの恋は本当の意味ではじまります。',
+    destiny: '何かを手放す時期かもしれません。でもそれは喪失ではなく「脱皮」。蠍座の星は、古い自分を壊すことで新しい力を手に入れます。怖いのは一瞬だけ。その先に、今までとは違う景色が広がっている。'
+  },
+  sagittarius: {
+    name: '射手座',
+    icon: '♐',
+    range: '11/23 – 12/21',
+    keywords: ['冒険', '哲学', '自由', '楽観'],
+    essence: 'あなたの星は「探求」を司る火の星。まだ見ぬ世界、知らない文化、出会ったことのない考え方——そこに全力で飛び込んでいける人。射手座の最大の才能は、どんな状況でも「面白がれる」こと。',
+    love: '束縛が苦手。でもそれは愛情が薄いのではなく、「自由でいられる関係」こそが最高の愛だと知っているから。一緒に新しい場所へ行ける人、一緒に成長できる人に強く心が動く。理想の恋は「隣にいるのに、お互い自由」。',
+    destiny: '「ここじゃない」と感じているなら、それはあなたの星が次のステージを示しているサイン。射手座の矢は、遠くを目指すほど高く飛びます。大きな目標を掲げることを、恐れないで。'
+  },
+  capricorn: {
+    name: '山羊座',
+    icon: '♑',
+    range: '12/22 – 1/19',
+    keywords: ['野心', '責任', '忍耐', '達成'],
+    essence: 'あなたの星は「達成」を司る地の星。頂上を目指して、一歩ずつ——山羊座の人は、どれだけ険しい道でも登り続ける強さを持っています。要領がいいわけじゃない。ただ、絶対にあきらめない。',
+    love: '恋愛でも「確かなもの」を求めます。遊びの関係には興味がなく、将来を見据えたパートナーシップに価値を感じる。不器用に見えるかもしれないけれど、あなたの愛情表現は「行動」に表れている。好きな人のために黙って動けるその姿は、相手の心に必ず届いています。',
+    destiny: '今の努力が報われるタイミングは、もうすぐそこ。山羊座の星は、コツコツ積み上げた人にだけ大きな成果を与えます。もう少し——あと少しだけ、自分を信じて歩き続けて。'
+  },
+  aquarius: {
+    name: '水瓶座',
+    icon: '♒',
+    range: '1/20 – 2/18',
+    keywords: ['革新', '独立', '博愛', '未来'],
+    essence: 'あなたの星は「未来」を司る風の星。常識の枠に収まらない視点、誰も思いつかない発想——水瓶座は、時代の少し先を歩いている人。「変わっている」と言われることに、実はちょっと誇りを感じているのでは。',
+    love: '恋愛において、精神的なつながりを何よりも大切にする。容姿やステータスより「考え方が面白い人」に心を動かされる。ただ、親密になりすぎると距離を置きたくなる——その繰り返しに悩むこともあるかも。大切なのは、「近づきたいけど怖い」という気持ちを、相手に正直に伝えること。',
+    destiny: 'あなたの中にある「こうなったらいいのに」というビジョン。それは理想論ではなく、実現可能な未来の設計図。水瓶座の星は、既存の枠を超えたとき——自分だけのルールで生き始めたとき、最も輝きます。'
+  },
+  pisces: {
+    name: '魚座',
+    icon: '♓',
+    range: '2/19 – 3/20',
+    keywords: ['共感', '幻想', '直感', '癒し'],
+    essence: 'あなたの星は「救済」を司る水の星。12星座の最後に位置する魚座は、すべての星座のエッセンスを持つ——だからこそ、誰の気持ちも理解できる。その共感力は、ときに自分と他人の境界線を曖昧にしてしまうほど。',
+    love: '恋をすると、相手の世界に溶け込んでしまう。「あなた色に染まる」を地で行くのが魚座の恋。それは美しいことだけれど、自分を見失わないことも大切。「この人と一緒にいると、もっと自分が好きになれる」——そう思える相手が、あなたの本当の運命の人。',
+    destiny: '直感が冴えている時期。理屈では説明できないけれど「こっちだ」と感じるものがあるなら、それを信じて。魚座の星は、論理を超えた場所で正解を知っています。ふわっと感じたこと——それが、最も確かな道しるべ。'
+  }
+};
+
+// ===== Divine function =====
+function divine() {
+  const month = parseInt(document.getElementById('birthMonth').value);
+  const day = parseInt(document.getElementById('birthDay').value);
+  const sign = getZodiac(month, day);
+  const data = ZODIAC[sign];
+
+  // Show loading
+  const overlay = document.getElementById('loadingOverlay');
+  overlay.classList.add('active');
+
+  setTimeout(() => {
+    overlay.classList.remove('active');
+
+    // Hide form, show result
+    document.getElementById('formSection').style.display = 'none';
+    const rs = document.getElementById('resultSection');
+    rs.style.display = 'block';
+
+    // Populate
+    document.getElementById('resultIcon').textContent = data.icon;
+    document.getElementById('resultName').textContent = data.name;
+    document.getElementById('resultRange').textContent = data.range;
+
+    let html = '';
+    html += '<h3>✦ あなたの星が語る本質</h3>';
+    html += '<p>' + data.essence + '</p>';
+    html += '<h3>✦ 恋愛の傾向</h3>';
+    html += '<p>' + data.love + '</p>';
+    html += '<h3>✦ 運命の流れ</h3>';
+    html += '<p>' + data.destiny + '</p>';
+    html += '<div class="keyword-tags">';
+    data.keywords.forEach(k => { html += '<span>✦ ' + k + '</span>'; });
+    html += '</div>';
+
+    document.getElementById('resultBody').innerHTML = html;
+
+    // Scroll to result
+    rs.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 1800);
+}
+
+// ===== Retry =====
+function retry() {
+  document.getElementById('resultSection').style.display = 'none';
+  document.getElementById('formSection').style.display = 'block';
+  document.getElementById('formSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+
+</body>
+</html>

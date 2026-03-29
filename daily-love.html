@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>星読み師♦るなの今日の恋愛運｜毎日届く、星からの恋のメッセージ</title>
+<meta name="description" content="月の満ち欠け、月星座、惑星の配置から今日の恋愛運を本格鑑定。毎日変わる占星術ベースの恋愛占いを星読み師♦るながお届けします。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Shippori+Mincho:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg-deep:#120a10;--bg-card:#1e1220;--gold:#d4a853;--gold-light:#f0d68a;--gold-dim:#a07c33;--silver:#c8cfe0;--text:#e0e4f0;--text-dim:#8a8faa;--accent:#e07898;--accent-light:#f0a0b8;--accent-dim:#a85070;--cta-phone:#e8734a;--cta-chat:#7b6bce;--cta-line:#06c755;--radius:14px;--font-body:'Zen Kaku Gothic New',sans-serif;--font-display:'Shippori Mincho',serif}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--bg-deep);color:var(--text);min-height:100vh;overflow-x:hidden;line-height:1.8;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(1.5px 1.5px at 12% 14%,rgba(255,255,255,.5) 50%,transparent 50%),radial-gradient(1px 1px at 28% 36%,rgba(255,255,255,.3) 50%,transparent 50%),radial-gradient(1.2px 1.2px at 46% 8%,rgba(255,255,255,.45) 50%,transparent 50%),radial-gradient(1px 1px at 64% 56%,rgba(255,255,255,.25) 50%,transparent 50%),radial-gradient(1.8px 1.8px at 76% 22%,rgba(255,255,255,.4) 50%,transparent 50%),radial-gradient(1px 1px at 88% 70%,rgba(255,255,255,.3) 50%,transparent 50%),radial-gradient(1.5px 1.5px at 32% 88%,rgba(255,255,255,.3) 50%,transparent 50%),radial-gradient(1.3px 1.3px at 72% 92%,rgba(255,255,255,.35) 50%,transparent 50%);pointer-events:none;z-index:0;animation:tw 6s ease-in-out infinite alternate}
+@keyframes tw{0%{opacity:.5}100%{opacity:1}}
+.wrapper{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:0 20px}
+header{text-align:center;padding:56px 0 32px}
+header .icon{font-size:44px;display:block;margin-bottom:12px;animation:fl 3s ease-in-out infinite}
+@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+header h1{font-family:var(--font-display);font-weight:800;font-size:24px;color:var(--gold-light);letter-spacing:.08em;margin-bottom:6px}
+header .sub{font-size:13px;color:var(--text-dim);letter-spacing:.12em}
+header .today-date{margin-top:12px;font-family:var(--font-display);font-size:15px;color:var(--accent-light);letter-spacing:.06em}
+header .intro{margin-top:16px;font-size:14px;color:var(--silver);line-height:1.9}
+.form-section{background:linear-gradient(135deg,var(--bg-card) 0%,#241428 100%);border:1px solid rgba(224,120,152,.15);border-radius:var(--radius);padding:32px 24px;margin-bottom:24px}
+.form-section h2{font-family:var(--font-display);font-size:18px;color:var(--accent);text-align:center;margin-bottom:20px}
+.date-inputs{display:flex;gap:8px;align-items:flex-end;margin-bottom:24px}
+.date-inputs .field{flex:1;display:flex;flex-direction:column}
+.date-inputs label{font-size:11px;color:var(--text-dim);margin-bottom:4px;letter-spacing:.06em}
+.date-inputs select{appearance:none;-webkit-appearance:none;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:8px;color:var(--text);font-family:var(--font-body);font-size:16px;padding:10px 12px;text-align:center;outline:none;transition:border-color .2s}
+.date-inputs select:focus{border-color:var(--accent)}
+.btn-divine{display:block;width:100%;padding:14px;background:linear-gradient(135deg,var(--accent-dim),var(--accent),var(--accent-light));color:#fff;border:none;border-radius:10px;font-family:var(--font-display);font-size:17px;font-weight:700;letter-spacing:.12em;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.btn-divine:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(224,120,152,.3)}
+.loading-overlay{display:none;position:fixed;inset:0;background:rgba(18,10,16,.94);z-index:100;justify-content:center;align-items:center;flex-direction:column;gap:20px}
+.loading-overlay.active{display:flex}
+.loading-spinner{width:48px;height:48px;border:3px solid rgba(224,120,152,.15);border-top-color:var(--accent);border-radius:50%;animation:sp .8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.loading-overlay p{font-family:var(--font-display);color:var(--gold-light);font-size:15px;letter-spacing:.1em;animation:pu 1.5s ease-in-out infinite}
+@keyframes pu{0%,100%{opacity:.5}50%{opacity:1}}
+.result-section{display:none;animation:fu .6s ease-out}
+@keyframes fu{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.result-card{background:linear-gradient(160deg,var(--bg-card) 0%,#221430 50%,#1e1228 100%);border:1px solid rgba(224,120,152,.2);border-radius:var(--radius);padding:32px 24px;margin-bottom:24px;position:relative;overflow:hidden}
+.result-card::before{content:'';position:absolute;top:-40px;right:-40px;width:120px;height:120px;background:radial-gradient(circle,rgba(224,120,152,.08) 0%,transparent 70%);pointer-events:none}
+.result-header{text-align:center;margin-bottom:20px}
+.result-header .sign-icon{font-size:42px}
+.result-header .sign-name{font-family:var(--font-display);font-size:20px;color:var(--gold-light);font-weight:800;margin-top:4px}
+.result-header .result-date{font-size:12px;color:var(--text-dim);margin-top:2px;letter-spacing:.08em}
+.astro-badge{display:inline-block;background:rgba(224,120,152,.1);border:1px solid rgba(224,120,152,.18);border-radius:20px;padding:3px 12px;font-size:11px;color:var(--accent-light);margin:2px;letter-spacing:.04em}
+.score-section{text-align:center;margin-bottom:24px}
+.score-section .score-label{font-family:var(--font-display);font-size:14px;color:var(--accent-light);margin-bottom:8px}
+.score-hearts{font-size:28px;letter-spacing:4px}
+.score-text{font-family:var(--font-display);font-size:13px;color:var(--text-dim);margin-top:6px}
+.result-body h3{font-family:var(--font-display);font-size:16px;color:var(--accent);margin-bottom:8px;margin-top:20px}
+.result-body h3:first-child{margin-top:0}
+.result-body p{font-size:14.5px;line-height:1.85;color:var(--silver)}
+.lucky-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.lucky-item{background:rgba(224,120,152,.06);border:1px solid rgba(224,120,152,.12);border-radius:10px;padding:12px;text-align:center}
+.lucky-item .lucky-label{font-size:11px;color:var(--text-dim);margin-bottom:4px;letter-spacing:.06em}
+.lucky-item .lucky-label span{font-size:9px;opacity:.6}
+.lucky-item .lucky-value{font-family:var(--font-display);font-size:15px;color:var(--accent-light);font-weight:600}
+.btn-retry{display:block;width:100%;padding:12px;background:transparent;border:1px solid rgba(224,120,152,.3);border-radius:10px;color:var(--accent);font-family:var(--font-display);font-size:15px;cursor:pointer;transition:background .2s;margin-bottom:32px}
+.btn-retry:hover{background:rgba(224,120,152,.06)}
+.cta-section{margin-bottom:48px}.cta-section .cta-lead{font-family:var(--font-display);font-size:18px;color:var(--gold-light);text-align:center;margin-bottom:6px}.cta-section .cta-sub{font-size:13px;color:var(--text-dim);text-align:center;margin-bottom:24px}
+.cta-card{display:block;text-decoration:none;background:var(--bg-card);border-radius:var(--radius);padding:20px;margin-bottom:14px;border:1px solid rgba(255,255,255,.06);transition:transform .15s,border-color .2s,box-shadow .2s}.cta-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.3)}.cta-card .cta-icon{font-size:28px;margin-bottom:8px}.cta-card .cta-title{font-family:var(--font-display);font-size:16px;font-weight:600;margin-bottom:4px}.cta-card .cta-desc{font-size:13px;color:var(--text-dim);line-height:1.6;margin-bottom:10px}.cta-card .cta-badge{display:inline-block;padding:4px 14px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:.04em}
+.cta-phone{border-color:rgba(232,115,74,.2)}.cta-phone:hover{border-color:rgba(232,115,74,.4)}.cta-phone .cta-title{color:#f0a080}.cta-phone .cta-badge{background:rgba(232,115,74,.15);color:#f0a080}
+.cta-chat{border-color:rgba(123,107,206,.2)}.cta-chat:hover{border-color:rgba(123,107,206,.4)}.cta-chat .cta-title{color:#a99de0}.cta-chat .cta-badge{background:rgba(123,107,206,.15);color:#a99de0}
+.cta-line{border-color:rgba(6,199,85,.15)}.cta-line:hover{border-color:rgba(6,199,85,.3)}.cta-line .cta-title{color:#4ddb82}.cta-line .cta-badge{background:rgba(6,199,85,.12);color:#4ddb82}
+footer{text-align:center;padding:24px 0 48px;font-size:11px;color:var(--text-dim);line-height:1.8}
+footer .pr-label{display:inline-block;padding:2px 10px;border:1px solid rgba(255,255,255,.1);border-radius:4px;font-size:10px;color:var(--text-dim);margin-bottom:8px;letter-spacing:.06em}
+@media(max-width:380px){.wrapper{padding:0 14px}header h1{font-size:21px}.result-card{padding:24px 16px}.form-section{padding:24px 16px}}
+
+/* ===== Back Nav ===== */
+.back-nav { position: relative; z-index: 10; text-align: center; padding: 16px 0 0; }
+.back-nav a { display: inline-block; font-family: var(--font-display); font-size: 13px; color: var(--gold); text-decoration: none; letter-spacing: .08em; padding: 6px 16px; border: 1px solid rgba(212,168,83,.2); border-radius: 20px; transition: border-color .2s, background .2s; }
+.back-nav a:hover { border-color: rgba(212,168,83,.4); background: rgba(212,168,83,.06); }
+
+</style>
+</head>
+<body>
+<div class="back-nav"><a href="index.html">✦ 占いの館に戻る</a></div>
+<div class="loading-overlay" id="loadingOverlay"><div class="loading-spinner"></div><p>今日の星の配置を読んでいます…</p></div>
+<div class="wrapper">
+<header><span class="icon">💕</span><h1>星読み師♦るなの今日の恋愛運</h1><p class="sub">— 毎日届く、星からの恋のメッセージ —</p><p class="today-date" id="todayDate"></p><p class="intro">月の満ち欠け、月星座、支配星——<br>すべての天体の動きから、<br>今日のあなたの恋愛運を読み解きます。</p></header>
+<section class="form-section" id="formSection"><h2>✦ 生年月日を教えてください</h2><div class="date-inputs"><div class="field"><label>月</label><select id="birthMonth"></select></div><div class="field"><label>日</label><select id="birthDay"></select></div></div><button class="btn-divine" onclick="divine()">今日の恋愛運を占う</button></section>
+<section class="result-section" id="resultSection"><div class="result-card"><div class="result-header"><div class="sign-icon" id="resultIcon"></div><div class="sign-name" id="resultSignName"></div><div class="result-date" id="resultDate"></div><div id="astroBadges" style="margin-top:10px"></div></div><div class="score-section"><div class="score-label">今日の恋愛運</div><div class="score-hearts" id="scoreHearts"></div><div class="score-text" id="scoreText"></div></div><div class="result-body" id="resultBody"></div></div>
+<button class="btn-retry" onclick="retry()">✦ もう一度占う</button>
+<div class="cta-section"><p class="cta-lead">今日の恋、もっと詳しく知りたいなら</p><p class="cta-sub">プロの占い師があなたの星を本格鑑定</p>
+<a class="cta-card cta-phone" href="https://px.a8.net/svt/ejp?a8mat=4AZO4G+FQSSJE+2PEO+C3BAQ" target="_blank" rel="nofollow noopener noreferrer sponsored"><div class="cta-icon">📞</div><div class="cta-title">プロの占い師に電話で相談する</div><div class="cta-desc">タロット・霊感・占星術——あなたに合った占い師を選んで、今すぐ本格鑑定。恋愛・仕事・人間関係、なんでも相談OK。</div><span class="cta-badge">新規登録で3,000円分無料 ✦ 24時間OK</span></a><img border="0" width="1" height="1" src="https://www11.a8.net/0.gif?a8mat=4AZO4G+FQSSJE+2PEO+C3BAQ" alt="">
+<a class="cta-card cta-chat" href="https://px.a8.net/svt/ejp?a8mat=4AZO4H+10X056+5SGG+5YRHE" target="_blank" rel="nofollow noopener noreferrer sponsored"><div class="cta-icon">💬</div><div class="cta-title">チャットで気軽に相談する</div><div class="cta-desc">電話はちょっと…という方に。チャットで本格鑑定が受けられます。深夜でも、通勤中でも、いつでも。</div><span class="cta-badge">初回500円分ポイントプレゼント</span></a><img border="0" width="1" height="1" src="https://www10.a8.net/0.gif?a8mat=4AZO4H+10X056+5SGG+5YRHE" alt="">
+<a class="cta-card cta-line" href="https://lin.ee/Vg3f2KS" target="_blank" rel="noopener noreferrer"><div class="cta-icon">🌙</div><div class="cta-title">るなに直接占ってもらう</div><div class="cta-desc">今日の恋愛運をさらに深く鑑定。気になることを送るだけ。</div><span class="cta-badge">無料で本格鑑定を体験する</span></a></div>
+<footer><span class="pr-label">PR</span><br>© 星読み師♦るな<br>本サイトにはアフィリエイト広告が含まれます</footer></section>
+</div>
+<script>
+const NOW=new Date(),YEAR=NOW.getFullYear(),MONTH=NOW.getMonth()+1,DAY=NOW.getDate(),DOW=NOW.getDay();
+document.getElementById('todayDate').textContent=YEAR+'年'+MONTH+'月'+DAY+'日（'+['日','月','火','水','木','金','土'][DOW]+'）';
+(function(){const mS=document.getElementById('birthMonth'),dS=document.getElementById('birthDay');for(let m=1;m<=12;m++){const o=document.createElement('option');o.value=m;o.textContent=m;mS.appendChild(o)}function ud(){const m=parseInt(mS.value),mx=new Date(2000,m,0).getDate(),c=parseInt(dS.value)||1;dS.innerHTML='';for(let d=1;d<=mx;d++){const o=document.createElement('option');o.value=d;o.textContent=d;if(d===Math.min(c,mx))o.selected=true;dS.appendChild(o)}}mS.addEventListener('change',ud);ud()})();
+
+const SIGNS=['aries','taurus','gemini','cancer','leo','virgo','libra','scorpio','sagittarius','capricorn','aquarius','pisces'];
+const S={aries:{n:'牡羊座',i:'♈',el:'fire'},taurus:{n:'牡牛座',i:'♉',el:'earth'},gemini:{n:'双子座',i:'♊',el:'air'},cancer:{n:'蟹座',i:'♋',el:'water'},leo:{n:'獅子座',i:'♌',el:'fire'},virgo:{n:'乙女座',i:'♍',el:'earth'},libra:{n:'天秤座',i:'♎',el:'air'},scorpio:{n:'蠍座',i:'♏',el:'water'},sagittarius:{n:'射手座',i:'♐',el:'fire'},capricorn:{n:'山羊座',i:'♑',el:'earth'},aquarius:{n:'水瓶座',i:'♒',el:'air'},pisces:{n:'魚座',i:'♓',el:'water'}};
+const EL_JP={fire:'火',earth:'地',air:'風',water:'水'};
+
+function getZodiac(m,d){const R=[{s:'capricorn',a:101,b:119},{s:'aquarius',a:120,b:218},{s:'pisces',a:219,b:320},{s:'aries',a:321,b:419},{s:'taurus',a:420,b:520},{s:'gemini',a:521,b:621},{s:'cancer',a:622,b:722},{s:'leo',a:723,b:822},{s:'virgo',a:823,b:922},{s:'libra',a:923,b:1023},{s:'scorpio',a:1024,b:1122},{s:'sagittarius',a:1123,b:1221},{s:'capricorn',a:1222,b:1231}];const v=m*100+d;for(const r of R)if(v>=r.a&&v<=r.b)return r.s;return'capricorn';}
+
+// ===== 天文計算 =====
+function getMoonPhase(y,m,d){const lp=2551443,nw=new Date(1970,0,7,20,35,0).getTime()/1000,now=new Date(y,m-1,d,12,0,0).getTime()/1000,p=((now-nw)%lp)/lp;const P=[{n:'新月',i:'🌑',k:'new'},{n:'三日月',i:'🌒',k:'waxCres'},{n:'上弦の月',i:'🌓',k:'firstQ'},{n:'十三夜月',i:'🌔',k:'waxGib'},{n:'満月',i:'🌕',k:'full'},{n:'十八夜月',i:'🌖',k:'wanGib'},{n:'下弦の月',i:'🌗',k:'lastQ'},{n:'二十六夜月',i:'🌘',k:'wanCres'}];return P[Math.floor(((p+0.0625)%1)*8)%8];}
+
+function getMoonSign(y,m,d){const ref=new Date(2024,0,11),now=new Date(y,m-1,d),diff=(now-ref)/86400000;return SIGNS[Math.floor(((diff*13.176/30)%12+12)%12)];}
+
+// ===== 曜日の支配星 =====
+const RULERS=[
+{p:'太陽',i:'☀️',love:'自信と輝きの日。あなた自身が光源になれる。恋においても、堂々と振る舞うことが最善の結果を引き寄せる。太陽に支配される今日は「主役でいること」を恐れないで。'},
+{p:'月',i:'🌙',love:'感受性が高まる月の日。相手の気持ちがいつもより手に取るようにわかる。その繊細さを武器に、相手が本当に求めていることに寄り添って。ただし感情の波に飲まれすぎないように。'},
+{p:'火星',i:'♂️',love:'情熱とエネルギーが高まる火星の日。好きな人に対して積極的に動ける。ただし勢い余って強引にならないように。情熱は方向を定めて放つこと。'},
+{p:'水星',i:'☿',love:'コミュニケーションの星・水星が支配する今日。言葉の力が最大限に高まっている。普段言えないことを伝えるのに最適な日。LINEの文面ひとつで、関係が大きく動く可能性あり。'},
+{p:'木星',i:'♃',love:'幸運と拡大の星・木星が支配する今日。恋愛においても追い風が吹いている。出会いの幅が広がり、新しい可能性が見えてくる。楽観的に、でも軽率にならないバランスで。'},
+{p:'金星',i:'♀️',love:'愛と美の女神・金星が支配する今日。恋愛において最も恵まれた曜日。あなたの魅力が自然と輝き、デートにも告白にも最適な一日。美しいものに心を開いて。'},
+{p:'土星',i:'♄',love:'試練と成長の星・土星が支配する今日。恋愛がうまくいかないと感じても、それは成長の証。土星は簡単には報酬をくれないけれど、乗り越えた先の愛はどの星よりも堅固で深い。'}
+];
+
+// ===== 月相×恋愛 =====
+const ML={
+new:'新月——恋愛においても「始まり」の力が最も強い夜。新しい出会いの種を蒔くのに最適。気になる人がいるなら、今日が第一歩を踏み出すとき。何も始まっていないからこそ、何でも始められる。',
+waxCres:'三日月——蒔いた恋の種がそっと芽を出し始めるとき。まだ目に見える変化はないかもしれない。でも水面下で確実に何かが動いている。焦らず、でも確実に、想いを育てて。',
+firstQ:'上弦の月——恋のエネルギーがぐんと高まる夜。「やるかやらないか」の分岐点。ここで一歩踏み出せるかどうかが、今後の恋の流れを左右する。迷ったら進んで。',
+waxGib:'月が満ちていく勢いの中にいる今日。恋も盛り上がりに向かっている。相手との距離がぐっと縮まるチャンス。自信を持って。あなたの魅力は今、最高潮に近づいている。',
+full:'満月——感情が最も高まる夜。隠していた気持ちが溢れ出すかもしれない。それでいい。満月の光は真実を照らすためにある。今夜、あなたの心が語ることに耳を傾けて。',
+wanGib:'満月を過ぎ、月は少しずつ欠けていく。今は「受け取る」より「与える」のフェーズ。相手のために何かできることはないか考えて。見返りを求めない愛が、最も強い引力になる。',
+lastQ:'下弦の月——ここまで走ってきた恋を、一度立ち止まって振り返るタイミング。本当に大切なものは何か。手放すべきものは何か。心の棚卸しをする夜にして。',
+wanCres:'月が闇に還っていく時期。手放すべきものを手放すとき。執着や未練——それを抱えたままでは、次の新月で新しい恋を始められない。終わりは始まりの準備。'
+};
+
+// ===== 月星座メッセージ =====
+const MS={
+aries:'月が牡羊座にある今日、感情が直球になりやすい。思ったことをすぐ口に出したくなるけれど、その率直さが好印象を与える場面も。素直さが恋の追い風に。',
+taurus:'月が牡牛座にある今日、感覚的な喜びに心が満たされやすい。美味しいものを食べたとき、好きな音楽を聴いたとき——五感の幸福があなたの恋愛運を底上げする。',
+gemini:'月が双子座にある今日、好奇心と社交性が高まる。新しい人と話したくなるし、いつもの相手とも新鮮な話題で盛り上がれる。言葉が恋を動かす日。',
+cancer:'月が蟹座にある今日、感受性がとても高い。人の優しさに涙が出そうになったり、些細なことで傷つきやすくなったり。自分を守りつつ、心を開くバランスが大事。',
+leo:'月が獅子座にある今日、自信とカリスマ性が高まる。あなたの存在感が輝いていて、自然と人の目を引く。この輝きを恋愛に活かさない手はない。',
+virgo:'月が乙女座にある今日、分析力が冴える。恋愛においても冷静に状況を見極められる日。ただし「分析しすぎ」に注意。たまには理屈を超えて飛び込むことも大切。',
+libra:'月が天秤座にある今日、調和とバランスを求める気持ちが強まる。美しい関係を築きたいという意識が、恋愛を上品に演出してくれる。',
+scorpio:'月が蠍座にある今日、感情の深さが増す。表面的な恋には興味が持てず、相手の本質を見たくなる。深い絆を求める気持ちが、あなたを本物の恋に導く。',
+sagittarius:'月が射手座にある今日、冒険心と楽観性が高まる。恋愛においても「まあなんとかなる！」というポジティブさが功を奏する。気軽にデートに誘ってみて。',
+capricorn:'月が山羊座にある今日、恋愛にも真面目さと誠実さが求められる配置。将来を見据えたパートナーシップに意識が向く。地に足のついた愛が深まる日。',
+aquarius:'月が水瓶座にある今日、独自の恋愛観が冴える。型にはまらないアプローチが、相手のハートを射抜く。常識を超えた恋を楽しんで。',
+pisces:'月が魚座にある今日、ロマンティックな感受性が最大限に高まる。夢見がちになりやすいけれど、その繊細さこそがあなたの魅力。直感を信じて動いてみて。'
+};
+
+// ===== エレメント相互作用 =====
+const EI={
+fire_fire:{s:5,m:'月の炎があなたの炎と共鳴する日。情熱が最高潮。好きな気持ちを抑えきれないかもしれない——でもそれでいい。今日は心の火を思い切り燃やして。'},
+fire_earth:{s:3,m:'月の地のエネルギーが、あなたの炎に安定感を与える日。衝動的に動くのではなく、一歩ずつ確実に距離を詰めるのが吉。焦りは禁物。'},
+fire_air:{s:5,m:'月の風があなたの炎を大きく広げる日。恋のエネルギーが拡散し、新しい出会いや予想外の展開が起きやすい。風に乗って、自由に恋をして。'},
+fire_water:{s:2,m:'月の水があなたの炎を揺らす日。感情が不安定になりやすいけれど、それは内面の声に耳を傾けるチャンス。立ち止まる勇気が、恋を正しい方向へ導く。'},
+earth_fire:{s:3,m:'月の炎があなたの大地を温める日。いつもより積極的になれるとき。普段は慎重なあなたも、今日は少しだけ大胆な一歩を踏み出してみて。'},
+earth_earth:{s:4,m:'月の地があなたの地と重なる日。安定感が最高。穏やかで深い愛情が自然と流れる日。一緒にいるだけで「安心する」——そんな関係が深まるとき。'},
+earth_air:{s:2,m:'月の風があなたの大地の上を吹き抜ける日。いつもの安定感に「変化」の風が入ってくる。少し落ち着かないけれど、新しい視点で恋を見つめ直すチャンス。'},
+earth_water:{s:5,m:'月の水があなたの大地を潤す日。感受性が豊かになり、相手の気持ちを深く受け止められる。今日は「聴く」ことに徹して。あなたの理解が、相手の心を溶かす。'},
+air_fire:{s:5,m:'月の炎があなたの風に乗って広がる日。知的な刺激と情熱が同時に高まる。会話が弾む相手との距離が一気に縮まるとき。言葉の力を信じて。'},
+air_earth:{s:2,m:'月の地があなたの風を止める日。いつものように軽やかに動けないかもしれない。でもそれは「地に足をつけて考えなさい」という星のメッセージ。'},
+air_air:{s:4,m:'月の風があなたの風と調和する日。コミュニケーションが冴え渡る。相手との会話が驚くほどスムーズに流れ、お互いの考えが自然と重なる。最高の対話の日。'},
+air_water:{s:3,m:'月の水があなたの風に湿り気を与える日。いつもの理性的な判断に、感情という要素が加わる。頭だけでなく心でも考えて。直感が正しい答えをくれる。'},
+water_fire:{s:2,m:'月の炎があなたの水を揺らす日。感情が大きく波立つかもしれない。蒸気のように立ち上る想い——それを恐れず、でも相手にぶつける前に一度深呼吸して。'},
+water_earth:{s:5,m:'月の地があなたの水に安定した器を与える日。感情の波が穏やかに収まり、深い安心感の中で恋を楽しめる。今日は「一緒にいる幸せ」を噛みしめて。'},
+water_air:{s:3,m:'月の風があなたの水面にさざ波を立てる日。心が揺れやすいけれど、その揺れの中に新しい気づきがある。感じたことを言葉にしてみて。'},
+water_water:{s:4,m:'月の水があなたの水と混ざり合う日。共感力が最大値。相手の気持ちが自分のことのようにわかる。ただし共感しすぎて自分を見失わないように。境界線を忘れずに。'}
+};
+
+// ===== 星座ごとの伝統的パワーストーン（占星術の宝石対応表） =====
+const STONES={
+aries:['カーネリアン','ダイヤモンド','ブラッドストーン'],
+taurus:['ローズクォーツ','エメラルド','アベンチュリン'],
+gemini:['シトリン','タイガーアイ','アゲート'],
+cancer:['ムーンストーン','パール','セレナイト'],
+leo:['サンストーン','ペリドット','アンバー'],
+virgo:['アマゾナイト','サファイア','モスアゲート'],
+libra:['ラピスラズリ','オパール','ローズクォーツ'],
+scorpio:['オブシディアン','ガーネット','マラカイト'],
+sagittarius:['ターコイズ','ラピスラズリ','アメジスト'],
+capricorn:['オニキス','ガーネット','スモーキークォーツ'],
+aquarius:['アメジスト','アクアマリン','ラブラドライト'],
+pisces:['アクアマリン','アメジスト','フローライト']
+};
+
+// ===== エレメント対応カラー（占星術の伝統色） =====
+const EC={
+fire:[{n:'ルビーレッド',h:'#c83848'},{n:'サンセットオレンジ',h:'#e89050'},{n:'マゼンタ',h:'#c83080'},{n:'ゴールド',h:'#d4a040'}],
+earth:[{n:'テラコッタ',h:'#c88868'},{n:'モスグリーン',h:'#688848'},{n:'サンドベージュ',h:'#d0b890'},{n:'チョコレートブラウン',h:'#785040'}],
+air:[{n:'スカイブルー',h:'#68a8d8'},{n:'ラベンダー',h:'#9b7dcf'},{n:'ミントグリーン',h:'#68c8a0'},{n:'シルバー',h:'#b0b8c8'}],
+water:[{n:'ディープブルー',h:'#3050a0'},{n:'アクアマリン',h:'#50b0b8'},{n:'ローズピンク',h:'#e07898'},{n:'パールホワイト',h:'#e0e0e8'}]
+};
+
+// ===== 曜日の支配星に対応したラッキーアイテム =====
+// 各惑星の伝統的対応素材に基づくラッキーアイテム
+// 太陽=柑橘,シナモン,ローズマリー,金,ひまわり,サフラン,ローリエ
+// 月=ジャスミン,カモミール,ミルク,銀,白い花,ココナッツ,メロン
+// 火星=ジンジャー,バジル,唐辛子,黒胡椒,コリアンダー,ニンニク,赤いもの
+// 水星=ラベンダー,ミント,フェンネル,ディル,パセリ,書物
+// 木星=セージ,ナツメグ,はちみつ,クローブ,メリッサ,シダー,スターアニス
+// 金星=バラ,バニラ,りんご,苺,桃,イランイラン,ゼラニウム
+// 土星=パチュリ,松,黒いもの,根菜,ビーツ,サイプレス
+const DAY_ITEMS=[
+['シナモンラテ','オレンジ系の香りのハンドクリーム','ゴールドのヘアピン','柑橘系のリップ','オレンジのネイル','ローズマリーティー','ゴールドのピアス','グレープフルーツジュース','シトラス系のルームスプレー','シナモンのお菓子'],
+['ジャスミンティー','カモミールティー','ミルクティー','シルバーのリング','白いネイル','パールのピアス','ココナッツミルクのスイーツ','白い花を飾る','カモミールの入浴剤','ミルクプリン'],
+['ジンジャーティー','赤いリップ','スパイスカレー','赤いヘアゴム','ジンジャークッキー','バジルのパスタ','赤いネイル','ジンジャーエール','ピリ辛スナック','ブラックペッパーのパスタ'],
+['ラベンダーのピローミスト','ミントティー','お気に入りのペン','手書きのメモ','文庫本','ラベンダーのハンドクリーム','ミントのタブレット','ラベンダーの入浴剤','ミント系のリップ','ラベンダーのサシェ'],
+['はちみつ入りの紅茶','はちみつナッツのグラノーラ','ナッツのチョコレート','ナッツのお菓子','はちみつトースト','はちみつのど飴','クローブ入りのチャイ','レモンバームティー','はちみつのリップバーム','セージのお香'],
+['バラの入浴剤','バニラの香水','苺のスイーツ','ピンクのリップ','バラを一輪買う','ローズティー','ピンクのネイル','バニラのリップクリーム','桃のスイーツ','りんごのタルト'],
+['ウッディ系の香り','黒いアクセサリー','根菜のスープ','ブラックコーヒー','黒いネイル','ダークチョコレート','黒ゴマラテ','松の香りのアロマ','パチュリのハンドクリーム','根菜のグラタン']
+];
+const RT=['午前10時〜12時（太陽が最も高い時間帯）','午後8時〜10時（月が美しく見える時間帯）','午後4時〜6時（行動のエネルギーが集中する時間帯）','午前8時〜10時（言葉が冴える時間帯）','午後0時〜2時（幸運が広がる時間帯）','午後6時〜8時（金星の愛が満ちる時間帯）','午前6時〜8時（内省に適した静かな時間帯）'];
+
+// ===== 3軸スコア計算（出会い・告白・絆） =====
+function calcScores(ue,me,mk,dow){
+  const es=(EI[ue+'_'+me]||EI.fire_fire).s; // 2-5
+  const pb={new:3,waxCres:2,firstQ:3,waxGib:1,full:2,wanGib:0,lastQ:1,wanCres:2}; // 出会い：新月・上弦が高い
+  const pc={new:1,waxCres:2,firstQ:3,waxGib:4,full:5,wanGib:3,lastQ:1,wanCres:0}; // 告白：満月が最高
+  const pp={new:0,waxCres:1,firstQ:2,waxGib:3,full:4,wanGib:5,lastQ:3,wanCres:2}; // 絆：満月過ぎが深まる
+  const db=[1,2,1,3,2,3,0]; // 曜日ボーナス（金星=金曜、水星=水曜が高い）
+
+  const clamp=(v)=>Math.max(1,Math.min(5,Math.round(v)));
+  const deai  = clamp(((pb[mk]||0)+es*0.5+db[dow]*0.3)*5/8);
+  const kokuh = clamp(((pc[mk]||0)+es*0.6+db[dow]*0.4)*5/9);
+  const kizun = clamp(((pp[mk]||0)+es*0.7+db[dow]*0.2)*5/9);
+  const total = clamp((deai+kokuh+kizun)/3+0.3);
+  return {deai,kokuh,kizun,total};
+}
+
+const ST=['嵐の前の静けさ…でも嵐の後にはいつも虹が出る','少し曇り空。でも雲の向こうに光がある','穏やかな風が吹いている。心を開いて受け取って','恋の追い風が吹いている。帆を張って進んで','恋の星が最高に輝く日。今日のあなたは無敵'];
+
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;}}
+
+function starStr(n){return '★'.repeat(n)+'☆'.repeat(5-n);}
+
+function divine(){
+  const m=parseInt(document.getElementById('birthMonth').value),d=parseInt(document.getElementById('birthDay').value);
+  const us=getZodiac(m,d),ue=S[us].el,si=S[us];
+  const moon=getMoonPhase(YEAR,MONTH,DAY),ms=getMoonSign(YEAR,MONTH,DAY),me=S[ms].el;
+  const ruler=RULERS[DOW],ei=EI[ue+'_'+me]||EI.fire_fire;
+  const scores=calcScores(ue,me,moon.k,DOW);
+  const hearts='❤️'.repeat(scores.total)+'🤍'.repeat(5-scores.total);
+  const rng=mulberry32(YEAR*10000+MONTH*100+DAY+SIGNS.indexOf(us)*7919);
+  const pick=(a)=>a[Math.floor(rng()*a.length)];
+  const lc=pick(EC[me]),stone=pick(STONES[us]),luckyItem=pick(DAY_ITEMS[DOW]);
+
+  document.getElementById('loadingOverlay').classList.add('active');
+  setTimeout(()=>{
+    document.getElementById('loadingOverlay').classList.remove('active');
+    document.getElementById('formSection').style.display='none';
+    const rs=document.getElementById('resultSection');rs.style.display='block';
+    document.getElementById('resultIcon').textContent=si.i;
+    document.getElementById('resultSignName').textContent=si.n+'の今日の恋愛運';
+    document.getElementById('resultDate').textContent=YEAR+'年'+MONTH+'月'+DAY+'日の鑑定';
+    document.getElementById('scoreHearts').textContent=hearts;
+    document.getElementById('scoreText').textContent=ST[scores.total-1];
+    document.getElementById('astroBadges').innerHTML='<span class="astro-badge">'+moon.i+' '+moon.n+'</span><span class="astro-badge">月は'+S[ms].n+S[ms].i+'に滞在</span><span class="astro-badge">'+ruler.i+' '+ruler.p+'の日</span>';
+
+    let h='';
+    // 3軸スコア
+    h+='<div class="lucky-grid" style="margin-bottom:20px">';
+    h+='<div class="lucky-item"><div class="lucky-label">出会い運<br><span>月相に連動</span></div><div class="lucky-value">'+starStr(scores.deai)+'</div></div>';
+    h+='<div class="lucky-item"><div class="lucky-label">告白運<br><span>満月に向かうほど上昇</span></div><div class="lucky-value">'+starStr(scores.kokuh)+'</div></div>';
+    h+='<div class="lucky-item"><div class="lucky-label">絆運<br><span>満月〜下弦で深まる</span></div><div class="lucky-value">'+starStr(scores.kizun)+'</div></div>';
+    h+='<div class="lucky-item"><div class="lucky-label">総合<br><span>天体配置から算出</span></div><div class="lucky-value">'+starStr(scores.total)+'</div></div>';
+    h+='</div>';
+
+    h+='<h3>'+moon.i+' 月のフェーズ：'+moon.n+'</h3><p>'+ML[moon.k]+'</p>';
+    h+='<h3>'+S[ms].i+' 今日の月星座：'+S[ms].n+'</h3><p>'+MS[ms]+'</p>';
+    h+='<h3>'+ruler.i+' 今日の支配星：'+ruler.p+'</h3><p>'+ruler.love+'</p>';
+    h+='<h3>✦ あなたの星×今日の月</h3>';
+    h+='<p>あなたは'+si.n+'（'+EL_JP[ue]+'のエレメント）。今日の月は'+S[ms].n+'（'+EL_JP[me]+'のエレメント）。</p>';
+    h+='<p>'+ei.m+'</p>';
+    h+='<div class="lucky-grid">';
+    h+='<div class="lucky-item"><div class="lucky-label">ラッキーカラー<br><span>月のエレメント（'+EL_JP[me]+'）に対応</span></div><div class="lucky-value" style="color:'+lc.h+'">● '+lc.n+'</div></div>';
+    h+='<div class="lucky-item"><div class="lucky-label">ラッキーアイテム<br><span>支配星（'+ruler.p+'）に対応</span></div><div class="lucky-value">'+luckyItem+'</div></div>';
+    h+='<div class="lucky-item"><div class="lucky-label">ラッキータイム<br><span>支配星（'+ruler.p+'）に対応</span></div><div class="lucky-value">'+RT[DOW]+'</div></div>';
+    h+='<div class="lucky-item"><div class="lucky-label">今日の守護石<br><span>'+si.n+'の伝統的対応石</span></div><div class="lucky-value">'+stone+'</div></div>';
+    h+='</div>';
+    document.getElementById('resultBody').innerHTML=h;
+    rs.scrollIntoView({behavior:'smooth',block:'start'});
+  },2000);
+}
+function retry(){document.getElementById('resultSection').style.display='none';document.getElementById('formSection').style.display='block';document.getElementById('formSection').scrollIntoView({behavior:'smooth',block:'start'});}
+</script>
+</body>
+</html>

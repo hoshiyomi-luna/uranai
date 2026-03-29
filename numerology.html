@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>星読み師♦るなの数秘術｜あなたの運命数が明かす人生の設計図</title>
+<meta name="description" content="生年月日からライフパスナンバーを算出。あなたの魂が選んだ数字が語る、本質・恋愛・使命を読み解きます。星読み師♦るなの本格数秘術。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Shippori+Mincho:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg-deep:#0b0d1a;--bg-card:#121530;--gold:#d4a853;--gold-light:#f0d68a;--gold-dim:#a07c33;
+  --silver:#c8cfe0;--text:#e0e4f0;--text-dim:#8a8faa;
+  --accent:#6bc5ce;--accent-light:#a0e4ea;
+  --cta-phone:#e8734a;--cta-chat:#7b6bce;--cta-line:#06c755;
+  --radius:14px;--font-body:'Zen Kaku Gothic New',sans-serif;--font-display:'Shippori Mincho',serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--bg-deep);color:var(--text);min-height:100vh;overflow-x:hidden;line-height:1.8;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(1.5px 1.5px at 8% 12%,rgba(255,255,255,.5) 50%,transparent 50%),radial-gradient(1px 1px at 22% 38%,rgba(255,255,255,.35) 50%,transparent 50%),radial-gradient(1.2px 1.2px at 42% 6%,rgba(255,255,255,.45) 50%,transparent 50%),radial-gradient(1px 1px at 58% 58%,rgba(255,255,255,.25) 50%,transparent 50%),radial-gradient(1.8px 1.8px at 74% 22%,rgba(255,255,255,.4) 50%,transparent 50%),radial-gradient(1px 1px at 86% 70%,rgba(255,255,255,.3) 50%,transparent 50%),radial-gradient(1.5px 1.5px at 32% 82%,rgba(255,255,255,.3) 50%,transparent 50%),radial-gradient(1.3px 1.3px at 94% 14%,rgba(255,255,255,.4) 50%,transparent 50%),radial-gradient(1.4px 1.4px at 68% 94%,rgba(255,255,255,.35) 50%,transparent 50%);pointer-events:none;z-index:0;animation:twinkle 6s ease-in-out infinite alternate}
+@keyframes twinkle{0%{opacity:.5}100%{opacity:1}}
+.wrapper{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:0 20px}
+
+header{text-align:center;padding:56px 0 32px}
+header .icon{font-size:44px;display:block;margin-bottom:12px;animation:float 3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+header h1{font-family:var(--font-display);font-weight:800;font-size:25px;color:var(--gold-light);letter-spacing:.08em;margin-bottom:6px}
+header .sub{font-size:13px;color:var(--text-dim);letter-spacing:.12em}
+header .intro{margin-top:20px;font-size:14px;color:var(--silver);line-height:1.9}
+
+.form-section{background:linear-gradient(135deg,var(--bg-card) 0%,#141842 100%);border:1px solid rgba(107,197,206,.15);border-radius:var(--radius);padding:32px 24px;margin-bottom:24px}
+.form-section h2{font-family:var(--font-display);font-size:18px;color:var(--accent);text-align:center;margin-bottom:20px}
+.date-inputs{display:flex;gap:8px;align-items:flex-end;margin-bottom:24px}
+.date-inputs .field{flex:1;display:flex;flex-direction:column}
+.date-inputs label{font-size:11px;color:var(--text-dim);margin-bottom:4px;letter-spacing:.06em}
+.date-inputs select{appearance:none;-webkit-appearance:none;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:8px;color:var(--text);font-family:var(--font-body);font-size:16px;padding:10px 12px;text-align:center;outline:none;transition:border-color .2s}
+.date-inputs select:focus{border-color:var(--accent)}
+.btn-divine{display:block;width:100%;padding:14px;background:linear-gradient(135deg,var(--gold-dim),var(--gold),var(--gold-light));color:var(--bg-deep);border:none;border-radius:10px;font-family:var(--font-display);font-size:17px;font-weight:700;letter-spacing:.12em;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.btn-divine:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(212,168,83,.3)}
+.btn-divine:active{transform:translateY(0)}
+
+.loading-overlay{display:none;position:fixed;inset:0;background:rgba(11,13,26,.94);z-index:100;justify-content:center;align-items:center;flex-direction:column;gap:20px}
+.loading-overlay.active{display:flex}
+.loading-spinner{width:48px;height:48px;border:3px solid rgba(107,197,206,.15);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-overlay p{font-family:var(--font-display);color:var(--gold-light);font-size:15px;letter-spacing:.1em;animation:pulse 1.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.5}50%{opacity:1}}
+
+.result-section{display:none;animation:fadeUp .6s ease-out}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+.result-card{background:linear-gradient(160deg,var(--bg-card) 0%,#131640 50%,#141535 100%);border:1px solid rgba(107,197,206,.2);border-radius:var(--radius);padding:32px 24px;margin-bottom:24px;position:relative;overflow:hidden}
+.result-card::before{content:'';position:absolute;top:-40px;right:-40px;width:120px;height:120px;background:radial-gradient(circle,rgba(107,197,206,.08) 0%,transparent 70%);pointer-events:none}
+
+.result-number{text-align:center;font-family:var(--font-display);font-size:64px;color:var(--accent-light);font-weight:800;line-height:1;margin-bottom:4px;text-shadow:0 0 30px rgba(107,197,206,.2)}
+.result-label{text-align:center;font-family:var(--font-display);font-size:14px;color:var(--accent);letter-spacing:.15em;margin-bottom:4px}
+.result-title{text-align:center;font-family:var(--font-display);font-size:22px;color:var(--gold-light);font-weight:800;margin-bottom:4px}
+.result-calc{text-align:center;font-size:12px;color:var(--text-dim);margin-bottom:24px;letter-spacing:.04em}
+.master-badge{display:inline-block;background:rgba(212,168,83,.12);border:1px solid rgba(212,168,83,.25);border-radius:20px;padding:3px 14px;font-size:11px;color:var(--gold-light);margin-bottom:16px;letter-spacing:.06em}
+
+.result-body h3{font-family:var(--font-display);font-size:16px;color:var(--accent);margin-bottom:8px;margin-top:20px}
+.result-body h3:first-child{margin-top:0}
+.result-body p{font-size:14.5px;line-height:1.85;color:var(--silver)}
+.result-body .keyword-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.result-body .keyword-tags span{background:rgba(107,197,206,.1);border:1px solid rgba(107,197,206,.2);border-radius:20px;padding:4px 14px;font-size:12px;color:var(--accent-light)}
+
+.btn-retry{display:block;width:100%;padding:12px;background:transparent;border:1px solid rgba(107,197,206,.3);border-radius:10px;color:var(--accent);font-family:var(--font-display);font-size:15px;cursor:pointer;transition:background .2s;margin-bottom:32px}
+.btn-retry:hover{background:rgba(107,197,206,.06)}
+
+.cta-section{margin-bottom:48px}
+.cta-section .cta-lead{font-family:var(--font-display);font-size:18px;color:var(--gold-light);text-align:center;margin-bottom:6px}
+.cta-section .cta-sub{font-size:13px;color:var(--text-dim);text-align:center;margin-bottom:24px}
+.cta-card{display:block;text-decoration:none;background:var(--bg-card);border-radius:var(--radius);padding:20px;margin-bottom:14px;border:1px solid rgba(255,255,255,.06);transition:transform .15s,border-color .2s,box-shadow .2s}
+.cta-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.cta-card .cta-icon{font-size:28px;margin-bottom:8px}
+.cta-card .cta-title{font-family:var(--font-display);font-size:16px;font-weight:600;margin-bottom:4px}
+.cta-card .cta-desc{font-size:13px;color:var(--text-dim);line-height:1.6;margin-bottom:10px}
+.cta-card .cta-badge{display:inline-block;padding:4px 14px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:.04em}
+.cta-phone{border-color:rgba(232,115,74,.2)}.cta-phone:hover{border-color:rgba(232,115,74,.4)}.cta-phone .cta-title{color:#f0a080}.cta-phone .cta-badge{background:rgba(232,115,74,.15);color:#f0a080}
+.cta-chat{border-color:rgba(123,107,206,.2)}.cta-chat:hover{border-color:rgba(123,107,206,.4)}.cta-chat .cta-title{color:#a99de0}.cta-chat .cta-badge{background:rgba(123,107,206,.15);color:#a99de0}
+.cta-line{border-color:rgba(6,199,85,.15)}.cta-line:hover{border-color:rgba(6,199,85,.3)}.cta-line .cta-title{color:#4ddb82}.cta-line .cta-badge{background:rgba(6,199,85,.12);color:#4ddb82}
+footer{text-align:center;padding:24px 0 48px;font-size:11px;color:var(--text-dim);line-height:1.8}
+footer .pr-label{display:inline-block;padding:2px 10px;border:1px solid rgba(255,255,255,.1);border-radius:4px;font-size:10px;color:var(--text-dim);margin-bottom:8px;letter-spacing:.06em}
+@media(max-width:380px){.wrapper{padding:0 14px}header h1{font-size:21px}.result-card{padding:24px 16px}.form-section{padding:24px 16px}}
+
+/* ===== Back Nav ===== */
+.back-nav { position: relative; z-index: 10; text-align: center; padding: 16px 0 0; }
+.back-nav a { display: inline-block; font-family: var(--font-display); font-size: 13px; color: var(--gold); text-decoration: none; letter-spacing: .08em; padding: 6px 16px; border: 1px solid rgba(212,168,83,.2); border-radius: 20px; transition: border-color .2s, background .2s; }
+.back-nav a:hover { border-color: rgba(212,168,83,.4); background: rgba(212,168,83,.06); }
+
+</style>
+</head>
+<body>
+<div class="back-nav"><a href="index.html">✦ 占いの館に戻る</a></div>
+
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-spinner"></div>
+  <p>あなたの運命数を読み解いています…</p>
+</div>
+
+<div class="wrapper">
+
+  <header>
+    <span class="icon">🔢</span>
+    <h1>星読み師♦るなの数秘術</h1>
+    <p class="sub">— あなたの魂が選んだ数字 —</p>
+    <p class="intro">
+      生年月日には、あなたの魂が生まれる前に選んだ<br>
+      「人生の設計図」が刻まれています。<br>
+      運命数（ライフパスナンバー）が語る、<br>
+      あなたの本質・恋・使命を読み解きます。
+    </p>
+  </header>
+
+  <section class="form-section" id="formSection">
+    <h2>✦ 生年月日を教えてください</h2>
+    <div class="date-inputs">
+      <div class="field">
+        <label>年</label>
+        <select id="birthYear"></select>
+      </div>
+      <div class="field">
+        <label>月</label>
+        <select id="birthMonth"></select>
+      </div>
+      <div class="field">
+        <label>日</label>
+        <select id="birthDay"></select>
+      </div>
+    </div>
+    <button class="btn-divine" onclick="divine()">運命数を算出する</button>
+  </section>
+
+  <section class="result-section" id="resultSection">
+    <div class="result-card">
+      <div class="result-label" id="resultLabel">LIFE PATH NUMBER</div>
+      <div class="result-number" id="resultNumber"></div>
+      <div class="result-title" id="resultTitle"></div>
+      <div style="text-align:center"><span class="master-badge" id="masterBadge" style="display:none"></span></div>
+      <div class="result-calc" id="resultCalc"></div>
+      <div class="result-body" id="resultBody"></div>
+    </div>
+
+    <button class="btn-retry" onclick="retry()">✦ もう一度占う</button>
+
+    <div class="cta-section">
+      <p class="cta-lead">数字の声を、もっと深く聴きたいなら</p>
+      <p class="cta-sub">あなたの運命数が示す未来を、プロが読み解きます</p>
+
+      <a class="cta-card cta-phone" href="https://px.a8.net/svt/ejp?a8mat=4AZO4G+FQSSJE+2PEO+C3BAQ" target="_blank" rel="nofollow noopener noreferrer sponsored">
+        <div class="cta-icon">📞</div>
+        <div class="cta-title">プロの占い師に電話で相談する</div>
+        <div class="cta-desc">タロット・霊感・占星術——あなたに合った占い師を選んで、今すぐ本格鑑定。恋愛・仕事・人間関係、なんでも相談OK。</div>
+        <span class="cta-badge">新規登録で3,000円分無料 ✦ 24時間OK</span>
+      </a>
+      <img border="0" width="1" height="1" src="https://www11.a8.net/0.gif?a8mat=4AZO4G+FQSSJE+2PEO+C3BAQ" alt="">
+
+      <a class="cta-card cta-chat" href="https://px.a8.net/svt/ejp?a8mat=4AZO4H+10X056+5SGG+5YRHE" target="_blank" rel="nofollow noopener noreferrer sponsored">
+        <div class="cta-icon">💬</div>
+        <div class="cta-title">チャットで気軽に相談する</div>
+        <div class="cta-desc">電話はちょっと…という方に。チャットで本格鑑定が受けられます。深夜でも、通勤中でも、いつでも。</div>
+        <span class="cta-badge">初回500円分ポイントプレゼント</span>
+      </a>
+      <img border="0" width="1" height="1" src="https://www10.a8.net/0.gif?a8mat=4AZO4H+10X056+5SGG+5YRHE" alt="">
+
+      <a class="cta-card cta-line" href="https://lin.ee/Vg3f2KS" target="_blank" rel="noopener noreferrer">
+        <div class="cta-icon">🌙</div>
+        <div class="cta-title">るなに直接占ってもらう</div>
+        <div class="cta-desc">あなたの悩みに合わせた本格鑑定を無料で体験できます。気になることを送るだけ。</div>
+        <span class="cta-badge">無料で本格鑑定を体験する</span>
+      </a>
+    </div>
+
+    <footer>
+      <span class="pr-label">PR</span><br>
+      © 星読み師♦るな<br>
+      本サイトにはアフィリエイト広告が含まれます
+    </footer>
+  </section>
+
+</div>
+
+<script>
+// ===== Date selectors =====
+(function(){
+  const yS=document.getElementById('birthYear'),mS=document.getElementById('birthMonth'),dS=document.getElementById('birthDay');
+  const curY=new Date().getFullYear();
+  for(let y=curY;y>=1940;y--){const o=document.createElement('option');o.value=y;o.textContent=y;if(y===2000)o.selected=true;yS.appendChild(o)}
+  for(let m=1;m<=12;m++){const o=document.createElement('option');o.value=m;o.textContent=m;mS.appendChild(o)}
+  function updateDays(){const y=parseInt(yS.value),m=parseInt(mS.value),max=new Date(y,m,0).getDate(),cur=parseInt(dS.value)||1;dS.innerHTML='';for(let d=1;d<=max;d++){const o=document.createElement('option');o.value=d;o.textContent=d;if(d===Math.min(cur,max))o.selected=true;dS.appendChild(o)}}
+  yS.addEventListener('change',updateDays);mS.addEventListener('change',updateDays);updateDays();
+})();
+
+// ===== Life Path Number calculation =====
+function calcLifePath(y, m, d) {
+  function reduceToDigit(n) {
+    while (n > 9 && n !== 11 && n !== 22 && n !== 33) {
+      n = String(n).split('').reduce((a, b) => a + parseInt(b), 0);
+    }
+    return n;
+  }
+  const rY = reduceToDigit(y);
+  const rM = reduceToDigit(m);
+  const rD = reduceToDigit(d);
+  return reduceToDigit(rY + rM + rD);
+}
+
+function calcStepsDisplay(y, m, d) {
+  function reduceShow(n) {
+    const steps = [n];
+    while (n > 9 && n !== 11 && n !== 22 && n !== 33) {
+      n = String(n).split('').reduce((a, b) => a + parseInt(b), 0);
+      steps.push(n);
+    }
+    return { result: n, steps: steps };
+  }
+  const yDigits = String(y).split('').join('+');
+  const ySum = String(y).split('').reduce((a,b) => a + parseInt(b), 0);
+  const rY = reduceShow(ySum);
+  const rM = reduceShow(m);
+  const rD = reduceShow(d);
+  const sum = rY.result + rM.result + rD.result;
+  const final = reduceShow(sum);
+  return '年' + rY.result + ' + 月' + rM.result + ' + 日' + rD.result + ' = ' + sum + ' → ' + final.result;
+}
+
+// ===== Numerology Data =====
+const NUMEROLOGY = {
+  1: {
+    title: '開拓者の魂',
+    keywords: ['リーダーシップ','独立','パイオニア','意志力'],
+    essence: 'ライフパスナンバー「1」を持つあなたは、道なき道を切り拓く存在。誰かの後ろを歩くことに、どこか違和感を感じてきたのでは。それは正しい。あなたの魂は「先頭に立つ」ことを選んで生まれてきた。組織の中にいても、心のどこかで「自分のやり方でやりたい」と思っている——その衝動は、わがままではなく使命です。',
+    love: '恋愛では、対等に渡り合える相手に惹かれます。守ってあげたい相手より、一緒に戦える相手。あなたの強さを「怖い」と感じる人は合わない。「かっこいい」と思ってくれる人が、あなたの運命の相手。ただ、強さの裏にある弱さを見せることも愛情。たまには甘えてみて。',
+    mission: 'あなたの使命は「最初の一歩を踏み出すこと」。誰もやっていないことをやる、誰も言わないことを言う。その一歩が、後ろにいる人たちの道になる。批判されることを恐れないで。先頭に立つ人は、必ず風を受ける。でもそれは、前に進んでいる証拠。'
+  },
+  2: {
+    title: '調和の使者',
+    keywords: ['共感','協調','直感','支える力'],
+    essence: '「2」の魂は、人と人をつなぐ架け橋。あなたがいるだけで場が和らぐ——そう言われたことはありませんか。それは気のせいじゃない。2の人は、空気の微細な変化を読み取る天性のセンサーを持っている。誰かの表情のわずかな曇りに気づける、その繊細さがあなたの最大の才能。',
+    love: '恋愛では、精神的なつながりを何よりも大切にする。一緒にいて「安心する」と感じる相手に、ゆっくりと心を開いていく。ただ、相手に合わせすぎて自分を見失うことがある。「相手の幸せ＝自分の幸せ」と思いがちだけれど、あなた自身の幸せも同じくらい大切にしていい。',
+    mission: 'あなたの使命は「つなげること」。対立する意見の間に立ち、両方の声を聴き、調和を生み出す。それは地味に見えるかもしれないけれど、世界を動かしているのは派手なリーダーではなく、静かに橋を架け続けるあなたのような人。'
+  },
+  3: {
+    title: '表現者の星',
+    keywords: ['創造性','喜び','表現力','社交性'],
+    essence: '「3」の魂は、この世界に喜びを届けるために生まれてきた。あなたの言葉、笑顔、アイデア——それ自体が周りの人へのギフト。「楽しい」を追求することに罪悪感を感じる必要はない。あなたが楽しんでいるとき、周りも一緒に明るくなる。それが3の魔法。',
+    love: '恋愛では、一緒にいて「楽しい」ことが最優先。笑いの絶えない関係、会話が弾む相手に強く惹かれる。ただ、楽しさの裏で本音を隠すクセがある。深い話になると冗談でごまかしてしまう——でも、本当の親密さは、弱さを共有することで生まれる。',
+    mission: 'あなたの使命は「表現すること」。言葉、絵、音楽、料理、ファッション——手段は何でもいい。あなたの内側にあるものを外に出すこと。「誰かに見せるレベルじゃない」なんて思わなくていい。あなたの表現は、それを必要としている誰かに必ず届く。'
+  },
+  4: {
+    title: '礎を築く者',
+    keywords: ['安定','努力','誠実','継続力'],
+    essence: '「4」の魂は、揺るがない土台を築く存在。華やかさはないかもしれない。でも、あなたが作ったものは壊れない。コツコツと積み上げる力、約束を守る誠実さ、細部にまでこだわる丁寧さ——それは誰にでも真似できるものじゃない。地味に見えて、実は最強の才能。',
+    love: '恋愛では、信頼できる関係を求めます。ドラマティックな展開より、毎日ちゃんと「おはよう」と言い合える安心感。ただ、堅実すぎて面白みがないと思われることを恐れないで。あなたの誠実さは、長い時間をかけて相手の心の奥深くに届く。派手な恋より、あなたの愛の方がずっと長く残る。',
+    mission: 'あなたの使命は「形にすること」。アイデアを現実に、夢を計画に、計画を成果に。途中で投げ出さずに最後まで完成させる力が、あなたにはある。世界には始める人はたくさんいるけれど、完成させられる人は少ない。あなたはその貴重な一人。'
+  },
+  5: {
+    title: '自由の冒険者',
+    keywords: ['変化','冒険','自由','多才'],
+    essence: '「5」の魂は、風のように生きるために生まれてきた。同じ場所に留まると息が詰まる。同じ日常の繰り返しに耐えられない。それは落ち着きがないのではなく、あなたの魂が「もっと広い世界」を求めているから。変化を恐れない——それがあなたの最大の武器。',
+    love: '恋愛では、刺激と自由を与えてくれる相手に心が動く。束縛は息苦しさに変わり、退屈は愛情を枯らす。ただ、「飽きたら次」を繰り返すと、いつまでも深い関係にたどり着けない。本当の自由は、誰かと深くつながった上で互いを尊重し合うことの中にもある。',
+    mission: 'あなたの使命は「体験すること」。本で読んだ知識より、自分の足で歩いて得た経験こそがあなたの財産。失敗も成功も、すべてがあなたの血肉になる。そしてその体験を誰かに伝えるとき、あなたの言葉には教科書にない説得力が宿る。'
+  },
+  6: {
+    title: '愛と責任の守護者',
+    keywords: ['愛情','責任感','家庭','奉仕'],
+    essence: '「6」の魂は、愛で世界を包む存在。家族、友人、恋人、同僚——あなたの周りにいる人たちは、あなたの温かさに何度も救われているはず。困っている人を放っておけない、約束は必ず守る——その責任感と愛情の深さは、6の人だけが持つ特別な力。',
+    love: '恋愛では、「この人を守りたい」と思ったときに本気のスイッチが入る。献身的で、相手のために全力を尽くす。でも、尽くしすぎて共依存になることに注意。「愛している」と「必要とされたい」は似ているようで全然違う。相手がいなくても自分は大丈夫——その自立が、本当の愛を引き寄せる。',
+    mission: 'あなたの使命は「守ること、育てること」。人でも、場所でも、プロジェクトでも。あなたの手をかけたものは、確実に良くなる。ただし、全部を自分で背負わないで。助けを求めることは弱さじゃない。あなたが倒れたら、守りたいものも守れなくなるから。'
+  },
+  7: {
+    title: '真理の探求者',
+    keywords: ['分析','探求','神秘','内省'],
+    essence: '「7」の魂は、表面的なものでは満足しない。「なぜ？」「本当に？」——その問いを止められない人。みんなが疑問に思わないことに違和感を覚え、常識の裏側を覗きたがる。それは変わっているのではなく、真実に近い場所にいるということ。',
+    love: '恋愛では、知的なつながりを最も重視する。見た目や雰囲気だけでは心が動かない。「この人の考え方は面白い」と思えたときに初めて、恋が始まる。ただ、分析しすぎて恋を「観察対象」にしてしまうことがある。たまには頭を止めて、胸の奥の温度を感じてみて。',
+    mission: 'あなたの使命は「深く掘ること」。他の人が通り過ぎる場所で立ち止まり、見えないものを見つけ出す。その発見は、やがて多くの人の目を開かせる。孤独を感じることもあるかもしれない。でも7の探求者は、ひとりで深く潜れるからこそ、誰も見つけられなかった真珠を持ち帰れる。'
+  },
+  8: {
+    title: '力と豊穣の支配者',
+    keywords: ['達成','権力','豊かさ','現実化'],
+    essence: '「8」の魂は、この物質世界で大きな影響力を持つために生まれてきた。お金、地位、成果——それらを追い求めることは、あなたにとって贅沢ではなく必然。8の人は「成功する力」を最初から与えられている。問題はそれを使うかどうかだけ。',
+    love: '恋愛では、自分と同じくらい野心的で、自分の足で立っている相手に惹かれる。依存されるのは苦手。対等なパートナーシップを求める。ただ、仕事を優先しすぎて大切な人との時間を後回しにしていないか。どれだけ成功しても、隣で一緒に笑ってくれる人がいなければ、豊かさは半分。',
+    mission: 'あなたの使命は「豊かさを現実にすること」。そしてその豊かさを循環させること。稼ぐだけでなく、与えること。影響力を自分のためだけでなく、誰かのために使うこと。8の人が真の力を発揮するのは、「自分のためだけ」から「みんなのために」に意識が変わった瞬間。'
+  },
+  9: {
+    title: '慈愛の完成者',
+    keywords: ['慈悲','完結','手放し','普遍的な愛'],
+    essence: '「9」の魂は、すべてを包み込む愛を持つ存在。数秘術で最後の一桁数であり、1から8までのすべてのエッセンスを内包している。だからあなたは、誰の気持ちも理解できる。喜びも悲しみも、強さも弱さも——すべてを知っている。そしてそのすべてを赦せる。',
+    love: '恋愛では、見返りを求めない大きな愛を注ぐ。ただし、「誰でもいい」のではなく、魂のレベルでつながれる相手を求めている。表面的な関係には満足できない。あなたが本当に求めているのは、一緒にいるだけで魂が安らぐような、深い深い絆。',
+    mission: 'あなたの使命は「手放すこと、そして愛すること」。執着を捨て、過去を赦し、すべてを受け入れる。それが9の人の到達点。壮大に聞こえるかもしれないけれど、日常の中に使命はある。許せない人を許す、終わったことを手放す、見返りなく与える——その一つ一つが、あなたの魂を完成に近づける。'
+  },
+  11: {
+    title: '直感のマスター',
+    keywords: ['霊感','インスピレーション','理想','二重性'],
+    isMaster: true,
+    essence: 'マスターナンバー「11」——これは非常に稀で特別な運命数。1のエネルギーが二重に重なり、通常では感じ取れない領域のメッセージを受信できる人。直感がありえないほど鋭い。「なんとなくそう思った」が、ことごとく当たる。それは偶然じゃない。あなたには見えないものを感じ取るアンテナがある。',
+    love: '恋愛では、言葉にならない部分で相手を理解する力がある。相手の嘘も本音も、肌で感じ取ってしまう。だからこそ、裏表のない誠実な相手でないと一緒にいられない。11の人が安心できるのは、何も隠さなくていい関係だけ。',
+    mission: 'あなたの使命は「見えない世界と見える世界を橋渡しすること」。直感やインスピレーションを形にして、人に伝えること。芸術、言葉、音楽、癒し——手段は問わない。ただし、その敏感さゆえにエネルギーの消耗が激しい。意識的に休む時間を取ることが、使命を長く果たすための条件。'
+  },
+  22: {
+    title: '壮大なビジョンの建築家',
+    keywords: ['実現力','大事業','影響力','理想の具現化'],
+    isMaster: true,
+    essence: 'マスターナンバー「22」——数秘術において最も強力な運命数のひとつ。11の直感力に、4の現実化する力が加わった。つまり、「壮大なビジョンを描き、それを現実世界で形にできる」という、極めて稀な能力を持つ人。あなたのスケール感は、周りの人とは根本的に違うはず。',
+    love: '恋愛では、自分のビジョンを理解してくれる人を求める。「夢が大きすぎる」と言われてきた経験はないか。でも22の人の夢は大きくて当然。それを「すごいね」と目を輝かせて聞いてくれる人が、あなたのパートナー。足を引っ張る人ではなく、一緒に飛べる人を選んで。',
+    mission: 'あなたの使命は「大きなものを建てること」。それは建物かもしれないし、組織かもしれないし、仕組みかもしれない。個人の範囲を超えて、社会や世界に影響を与える何かを作ること。その分、プレッシャーも大きいけれど、22の魂はそれに耐えられる強さを最初から持っている。'
+  },
+  33: {
+    title: '無償の愛の体現者',
+    keywords: ['無償の愛','癒し','奉仕','聖なる使命'],
+    isMaster: true,
+    essence: 'マスターナンバー「33」——数秘術において最も神聖な運命数。11の直感力と22の実現力、その両方を持ちながら、すべてを「愛のため」に使う人。あなたの存在自体が、周りの人にとっての光になっている。自分では気づいていないかもしれないけれど、あなたがいるだけで救われている人がいる。',
+    love: '恋愛では、条件や損得を超えた「無条件の愛」を体現しようとする。それは美しいけれど、自己犠牲と紙一重。愛することと自分を消すことは違う。あなたが満たされていることが、周りを満たす前提条件。まず自分を愛して。',
+    mission: 'あなたの使命は「存在そのものが愛であること」。何か特別なことをしなくても、あなたがあなたでいるだけで使命は果たされている。ただ、33の道は険しい。感受性が極めて高いため、世の中の痛みを自分のことのように感じてしまう。自分を守る時間を持つことを忘れないで。'
+  }
+};
+
+// ===== Divine =====
+function divine() {
+  const y = parseInt(document.getElementById('birthYear').value);
+  const m = parseInt(document.getElementById('birthMonth').value);
+  const d = parseInt(document.getElementById('birthDay').value);
+  const lpn = calcLifePath(y, m, d);
+  const data = NUMEROLOGY[lpn];
+  const steps = calcStepsDisplay(y, m, d);
+
+  document.getElementById('loadingOverlay').classList.add('active');
+
+  setTimeout(() => {
+    document.getElementById('loadingOverlay').classList.remove('active');
+    document.getElementById('formSection').style.display = 'none';
+    const rs = document.getElementById('resultSection');
+    rs.style.display = 'block';
+
+    document.getElementById('resultNumber').textContent = lpn;
+    document.getElementById('resultTitle').textContent = data.title;
+    document.getElementById('resultCalc').textContent = y + '年' + m + '月' + d + '日 ／ ' + steps;
+
+    const badge = document.getElementById('masterBadge');
+    if (data.isMaster) {
+      badge.style.display = 'inline-block';
+      badge.textContent = '✦ マスターナンバー ✦';
+    } else {
+      badge.style.display = 'none';
+    }
+
+    let html = '';
+    html += '<h3>✦ あなたの魂の本質</h3>';
+    html += '<p>' + data.essence + '</p>';
+    html += '<h3>✦ 恋愛の傾向</h3>';
+    html += '<p>' + data.love + '</p>';
+    html += '<h3>✦ あなたの人生の使命</h3>';
+    html += '<p>' + data.mission + '</p>';
+    html += '<div class="keyword-tags">';
+    data.keywords.forEach(k => { html += '<span>✦ ' + k + '</span>'; });
+    html += '</div>';
+
+    document.getElementById('resultBody').innerHTML = html;
+    rs.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 2000);
+}
+
+function retry() {
+  document.getElementById('resultSection').style.display = 'none';
+  document.getElementById('formSection').style.display = 'block';
+  document.getElementById('formSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+</body>
+</html>

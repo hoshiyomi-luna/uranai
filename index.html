@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>星読み師♦るなの占いの館｜星が語る、あなたの物語</title>
+<meta name="description" content="星座占い・タロット・数秘術・相性占い・血液型占い・今日の恋愛運——星読み師♦るなが、あなたの星に宿る物語を読み解きます。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Shippori+Mincho:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --bg-deep: #0a0b1a;
+  --bg-card: #111333;
+  --bg-card-hover: #181b44;
+  --gold: #d4a853;
+  --gold-light: #f0d68a;
+  --gold-dim: #a07c33;
+  --silver: #c8cfe0;
+  --text: #e0e4f0;
+  --text-dim: #8a8faa;
+  --accent-pink: #c77dba;
+  --accent-blue: #6b8cce;
+  --cta-phone: #e8734a;
+  --cta-chat: #7b6bce;
+  --cta-line: #06c755;
+  --radius: 14px;
+  --font-body: 'Zen Kaku Gothic New', sans-serif;
+  --font-display: 'Shippori Mincho', serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-deep);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(1.5px 1.5px at 10% 15%, rgba(255,255,255,.6) 50%, transparent 50%),
+    radial-gradient(1px 1px at 25% 35%, rgba(255,255,255,.4) 50%, transparent 50%),
+    radial-gradient(1.2px 1.2px at 45% 8%, rgba(255,255,255,.5) 50%, transparent 50%),
+    radial-gradient(1px 1px at 60% 60%, rgba(255,255,255,.3) 50%, transparent 50%),
+    radial-gradient(1.8px 1.8px at 75% 25%, rgba(255,255,255,.5) 50%, transparent 50%),
+    radial-gradient(1px 1px at 85% 75%, rgba(255,255,255,.4) 50%, transparent 50%),
+    radial-gradient(1.5px 1.5px at 30% 80%, rgba(255,255,255,.35) 50%, transparent 50%),
+    radial-gradient(1px 1px at 50% 45%, rgba(255,255,255,.3) 50%, transparent 50%),
+    radial-gradient(1.3px 1.3px at 90% 10%, rgba(255,255,255,.45) 50%, transparent 50%),
+    radial-gradient(1px 1px at 15% 55%, rgba(255,255,255,.25) 50%, transparent 50%),
+    radial-gradient(1.4px 1.4px at 70% 90%, rgba(255,255,255,.4) 50%, transparent 50%),
+    radial-gradient(1px 1px at 5% 90%, rgba(255,255,255,.3) 50%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+  animation: twinkle 6s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  0% { opacity: .6; }
+  100% { opacity: 1; }
+}
+
+.wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ===== Header ===== */
+header {
+  text-align: center;
+  padding: 56px 0 20px;
+}
+
+header .icon {
+  font-size: 44px;
+  display: block;
+  margin-bottom: 12px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+header h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 26px;
+  color: var(--gold-light);
+  letter-spacing: .08em;
+  margin-bottom: 6px;
+}
+
+header .sub {
+  font-size: 13px;
+  color: var(--text-dim);
+  letter-spacing: .12em;
+}
+
+header .intro {
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--silver);
+  line-height: 2;
+}
+
+/* ===== Menu Grid ===== */
+.menu-section {
+  margin-bottom: 32px;
+}
+
+.menu-section h2 {
+  font-family: var(--font-display);
+  font-size: 17px;
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: 20px;
+  letter-spacing: .1em;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.menu-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  background: linear-gradient(135deg, var(--bg-card) 0%, #151840 100%);
+  border: 1px solid rgba(212,168,83,.12);
+  border-radius: var(--radius);
+  padding: 24px 12px 20px;
+  transition: transform .2s, border-color .2s, box-shadow .2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-card::before {
+  content: '';
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, rgba(212,168,83,.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.menu-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(212,168,83,.3);
+  box-shadow: 0 8px 32px rgba(212,168,83,.1);
+}
+
+.menu-card .card-icon {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.menu-card .card-title {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--gold-light);
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.menu-card .card-desc {
+  font-size: 12px;
+  color: var(--text-dim);
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* Featured card - full width */
+.menu-card.featured {
+  grid-column: 1 / -1;
+  flex-direction: row;
+  gap: 16px;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, #15133a 0%, #1c1650 100%);
+  border-color: rgba(212,168,83,.2);
+}
+
+.menu-card.featured .card-icon {
+  font-size: 36px;
+  margin-bottom: 0;
+}
+
+.menu-card.featured .card-text {
+  flex: 1;
+}
+
+.menu-card.featured .card-title {
+  text-align: left;
+  font-size: 16px;
+}
+
+.menu-card.featured .card-desc {
+  text-align: left;
+}
+
+.menu-card.featured .card-badge {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 2px 10px;
+  background: rgba(212,168,83,.12);
+  border-radius: 12px;
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: .04em;
+}
+
+/* ===== Divider ===== */
+.section-divider {
+  text-align: center;
+  margin: 36px 0;
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: .3em;
+}
+
+/* ===== CTA ===== */
+.cta-section { margin-bottom: 48px; }
+
+.cta-section .cta-lead {
+  font-family: var(--font-display);
+  font-size: 17px;
+  color: var(--gold-light);
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.cta-section .cta-sub {
+  font-size: 13px;
+  color: var(--text-dim);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.cta-card {
+  display: block;
+  text-decoration: none;
+  color: var(--text);
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 12px;
+  transition: border-color .2s, transform .15s;
+}
+
+.cta-card:hover {
+  transform: translateY(-2px);
+}
+
+.cta-card .cta-icon { font-size: 28px; margin-bottom: 8px; }
+.cta-card .cta-title { font-family: var(--font-display); font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+.cta-card .cta-desc { font-size: 13px; color: var(--text-dim); line-height: 1.6; margin-bottom: 10px; }
+.cta-card .cta-badge { display: inline-block; padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; letter-spacing: .04em; }
+
+.cta-phone { border-color: rgba(232,115,74,.2); }
+.cta-phone:hover { border-color: rgba(232,115,74,.4); }
+.cta-phone .cta-title { color: #f0a080; }
+.cta-phone .cta-badge { background: rgba(232,115,74,.15); color: #f0a080; }
+
+.cta-chat { border-color: rgba(123,107,206,.2); }
+.cta-chat:hover { border-color: rgba(123,107,206,.4); }
+.cta-chat .cta-title { color: #a99de0; }
+.cta-chat .cta-badge { background: rgba(123,107,206,.15); color: #a99de0; }
+
+.cta-line { border-color: rgba(6,199,85,.15); }
+.cta-line:hover { border-color: rgba(6,199,85,.3); }
+.cta-line .cta-title { color: #4ddb82; }
+.cta-line .cta-badge { background: rgba(6,199,85,.12); color: #4ddb82; }
+
+/* ===== Footer ===== */
+footer {
+  text-align: center;
+  padding: 32px 0 48px;
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 2;
+}
+
+footer .pr-label {
+  display: inline-block;
+  padding: 1px 8px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 4px;
+  font-size: 10px;
+  letter-spacing: .08em;
+  margin-bottom: 4px;
+}
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <header>
+    <span class="icon">🔮</span>
+    <h1>星読み師♦るなの占いの館</h1>
+    <p class="sub">— 星が語る、あなたの物語 —</p>
+    <p class="intro">
+      わたしは星読み師♦るな。七夕生まれの蟹座です。<br><br>
+      恋のこと、将来のこと、<br>
+      誰にも言えないまま抱えていること——<br>
+      星はいつも、あなたの味方をしてくれます。<br><br>
+      何度でも占いに来てください。<br>
+      そのたびに、星はちがう言葉をくれるから。
+    </p>
+  </header>
+
+  <section class="menu-section">
+    <h2>✦ すべて無料・登録不要 ✦</h2>
+
+    <div class="menu-grid">
+
+      <!-- Featured: 今日の恋愛運 -->
+      <a class="menu-card featured" href="daily-love.html">
+        <div class="card-icon">💫</div>
+        <div class="card-text">
+          <div class="card-title">今日の恋愛運</div>
+          <div class="card-desc">今日、あの人との距離は縮まる？ 星の配置から恋の流れを読み解きます</div>
+          <span class="card-badge">✦ 毎日更新</span>
+        </div>
+      </a>
+
+      <!-- 星座占い -->
+      <a class="menu-card" href="zodiac.html">
+        <div class="card-icon">⭐</div>
+        <div class="card-title">星座占い</div>
+        <div class="card-desc">性格・恋愛傾向・運命の流れを生年月日から読み解きます</div>
+      </a>
+
+      <!-- タロット -->
+      <a class="menu-card" href="tarot.html">
+        <div class="card-icon">🃏</div>
+        <div class="card-title">タロット占い</div>
+        <div class="card-desc">迷っていること、気になるあの人のこと——1枚が答えを教えてくれます</div>
+      </a>
+
+      <!-- 数秘術 -->
+      <a class="menu-card" href="numerology.html">
+        <div class="card-icon">🔢</div>
+        <div class="card-title">数秘術</div>
+        <div class="card-desc">本質・恋愛・人生の使命を、たった1つの運命数が明かします</div>
+      </a>
+
+      <!-- 血液型×星座 -->
+      <a class="menu-card" href="bloodtype.html">
+        <div class="card-icon">🩸</div>
+        <div class="card-title">血液型×星座</div>
+        <div class="card-desc">性格・恋愛・隠れた才能——48通りからあなただけの鑑定結果</div>
+      </a>
+
+      <!-- 相性占い -->
+      <a class="menu-card featured" href="compatibility.html">
+        <div class="card-icon">💞</div>
+        <div class="card-text">
+          <div class="card-title">相性占い</div>
+          <div class="card-desc">ふたりの生年月日から、星座の相性を本格鑑定。恋愛・コミュニケーション・未来を読み解きます</div>
+          <span class="card-badge">✦ 144通りの組み合わせ</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ===== Divider ===== -->
+  <div class="section-divider">· · · ✦ · · ·</div>
+
+  <!-- ===== CTA Section ===== -->
+  <div class="cta-section">
+    <p class="cta-lead">悩んでいることがあるなら</p>
+    <p class="cta-sub">ひとりで抱えなくて大丈夫</p>
+
+    <!-- ココナラ電話占い -->
+    <a class="cta-card cta-phone" href="https://px.a8.net/svt/ejp?a8mat=4AZO4G+FQSSJE+2PEO+C3BAQ" target="_blank" rel="nofollow noopener noreferrer sponsored">
+      <div class="cta-icon">📞</div>
+      <div class="cta-title">プロの占い師に電話で相談する</div>
+      <div class="cta-desc">タロット・霊感・占星術——あなたに合った占い師を選んで、今すぐ本格鑑定。恋愛・仕事・人間関係、なんでも相談OK。</div>
+      <span class="cta-badge">新規登録で3,000円分無料 ✦ 24時間OK</span>
+    </a>
+    <img border="0" width="1" height="1" src="https://www11.a8.net/0.gif?a8mat=4AZO4G+FQSSJE+2PEO+C3BAQ" alt="">
+
+    <!-- ブリランテ -->
+    <a class="cta-card cta-chat" href="https://px.a8.net/svt/ejp?a8mat=4AZO4H+10X056+5SGG+5YRHE" target="_blank" rel="nofollow noopener noreferrer sponsored">
+      <div class="cta-icon">💬</div>
+      <div class="cta-title">チャットで気軽に相談する</div>
+      <div class="cta-desc">電話はちょっと…という方に。チャットで本格鑑定が受けられます。深夜でも、通勤中でも、いつでも。</div>
+      <span class="cta-badge">初回500円分ポイントプレゼント</span>
+    </a>
+    <img border="0" width="1" height="1" src="https://www10.a8.net/0.gif?a8mat=4AZO4H+10X056+5SGG+5YRHE" alt="">
+
+    <!-- LINE -->
+    <a class="cta-card cta-line" href="https://lin.ee/Vg3f2KS" target="_blank" rel="noopener noreferrer">
+      <div class="cta-icon">🌙</div>
+      <div class="cta-title">るなに直接占ってもらう</div>
+      <div class="cta-desc">あなたの悩みに合わせた本格鑑定を無料で体験できます。生年月日と気になることを送るだけ。</div>
+      <span class="cta-badge">無料で本格鑑定を体験する</span>
+    </a>
+  </div>
+
+  <footer>
+    <span class="pr-label">PR</span><br>
+    © 星読み師♦るな<br>
+    本サイトにはアフィリエイト広告が含まれます
+  </footer>
+
+</div>
+
+</body>
+</html>
