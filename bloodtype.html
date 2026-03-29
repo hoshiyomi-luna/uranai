@@ -119,6 +119,7 @@ footer .pr-label{display:inline-block;padding:2px 10px;border:1px solid rgba(255
   <section class="form-section" id="formSection">
     <h2>✦ 生年月日と血液型を教えてください</h2>
     <div class="date-inputs">
+      <div class="field"><label>年</label><select id="birthYear"></select></div>
       <div class="field"><label>月</label><select id="birthMonth"></select></div>
       <div class="field"><label>日</label><select id="birthDay"></select></div>
     </div>
@@ -182,7 +183,9 @@ footer .pr-label{display:inline-block;padding:2px 10px;border:1px solid rgba(255
 <script>
 // ===== Selectors =====
 (function(){
-  const mS=document.getElementById('birthMonth'),dS=document.getElementById('birthDay');
+  const yS=document.getElementById('birthYear'),mS=document.getElementById('birthMonth'),dS=document.getElementById('birthDay');
+  const curY=new Date().getFullYear();
+  for(let y=curY;y>=1940;y--){const o=document.createElement('option');o.value=y;o.textContent=y;if(y===2000)o.selected=true;yS.appendChild(o)}
   for(let m=1;m<=12;m++){const o=document.createElement('option');o.value=m;o.textContent=m;mS.appendChild(o)}
   function updateDays(){const m=parseInt(mS.value),max=new Date(2000,m,0).getDate(),cur=parseInt(dS.value)||1;dS.innerHTML='';for(let d=1;d<=max;d++){const o=document.createElement('option');o.value=d;o.textContent=d;if(d===Math.min(cur,max))o.selected=true;dS.appendChild(o)}}
   mS.addEventListener('change',updateDays);updateDays();
@@ -276,10 +279,31 @@ AB_pisces:{title:'幻想の語り部',personality:'AB型のクールさと魚座
 };
 
 // ===== Divine =====
+
+// ===== 九星気学 =====
+function getKyusei(year){
+  // 節分前（1月〜2月3日頃）は前年扱いが正式だが簡易版として年のみで算出
+  const n=(11-((year-3)%9))%9;
+  return n===0?9:n;
+}
+const KYUSEI={
+1:{name:'一白水星',icon:'☵',trait:'柔軟で知的。水のように相手に寄り添える適応力が武器。人間関係に恵まれやすく、協調性で道を拓く。恋愛では聞き上手が魅力となり、相手の本音を引き出す力がある。'},
+2:{name:'二黒土星',icon:'☷',trait:'堅実で温かい母性の星。縁の下の力持ちタイプで、サポート力が抜群。努力をコツコツ積み上げることで大きな成果を得る。恋愛では安心感を与える存在として、深い信頼を築ける。'},
+3:{name:'三碧木星',icon:'☳',trait:'活発で行動力に溢れる若さの星。新しいことに飛び込む勇気と、周囲を巻き込む明るさが武器。恋愛では積極的なアプローチが吉。ただし焦りは禁物。'},
+4:{name:'四緑木星',icon:'☴',trait:'社交的で人脈に恵まれる風の星。人との出会いが運命を変える。優柔不断に見えることもあるが、それは選択肢の多さゆえ。恋愛では自然体でいるだけで人を惹きつける。'},
+5:{name:'五黄土星',icon:'✦',trait:'帝王の星。中心に立つ運命を持ち、強いカリスマ性がある。良くも悪くも影響力が大きい。恋愛では相手をリードする力があるが、支配的にならないよう意識すると◎。'},
+6:{name:'六白金星',icon:'☰',trait:'リーダーシップと品格の星。プライドが高く、理想も高い。妥協を嫌うが、その高い基準が自分を成長させる。恋愛では自分を磨くほどふさわしい相手が現れる。'},
+7:{name:'七赤金星',icon:'☱',trait:'華やかさと社交性の星。楽しいことが大好きで、場を盛り上げる才能がある。お金にも縁がある。恋愛ではユーモアと楽しさで相手の心を掴む。'},
+8:{name:'八白土星',icon:'☶',trait:'変革と蓄積の星。山のような安定感と、時代の変わり目に強い運を持つ。不動産や貯蓄に縁がある。恋愛では不器用だけど誰より誠実。その堅実さが最大の魅力。'},
+9:{name:'九紫火星',icon:'☲',trait:'知性と美の星。頭脳明晰で直感が鋭く、芸術的センスにも優れる。注目を浴びやすいが、浮き沈みも激しい。恋愛では情熱的で、相手を魅了する力が強い。'}
+};
+
 function divine() {
   if (!selectedBlood) { alert('血液型を選んでください'); return; }
+  const yr=parseInt(document.getElementById('birthYear').value);
   const m=parseInt(document.getElementById('birthMonth').value);
   const d=parseInt(document.getElementById('birthDay').value);
+  const ky=getKyusei(yr),kyData=KYUSEI[ky];
   const sign=getZodiac(m,d);
   const key=selectedBlood+'_'+sign;
   const data=D[key];
@@ -300,6 +324,7 @@ function divine() {
     html+='<h3>✦ あなたの本当の姿</h3><p>'+data.personality+'</p>';
     html+='<h3>✦ 恋愛の傾向</h3><p>'+data.love+'</p>';
     html+='<h3>✦ 隠れた才能</h3><p>'+data.talent+'</p>';
+    html+='<h3>✦ 九星気学から見る運勢傾向（'+kyData.name+' '+kyData.icon+'）</h3><p>'+kyData.trait+'</p>';
     html+='<div class="keyword-tags">';
     data.keys.forEach(k=>{html+='<span>✦ '+k+'</span>';});
     html+='</div>';

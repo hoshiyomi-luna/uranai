@@ -81,7 +81,7 @@ footer .pr-label{display:inline-block;padding:2px 10px;border:1px solid rgba(255
 <div class="loading-overlay" id="loadingOverlay"><div class="loading-spinner"></div><p>今日の星の配置を読んでいます…</p></div>
 <div class="wrapper">
 <header><span class="icon">💕</span><h1>星読み師♦るなの今日の恋愛運</h1><p class="sub">— 毎日届く、星からの恋のメッセージ —</p><p class="today-date" id="todayDate"></p><p class="intro">月の満ち欠け、月星座、支配星——<br>すべての天体の動きから、<br>今日のあなたの恋愛運を読み解きます。</p></header>
-<section class="form-section" id="formSection"><h2>✦ 生年月日を教えてください</h2><div class="date-inputs"><div class="field"><label>月</label><select id="birthMonth"></select></div><div class="field"><label>日</label><select id="birthDay"></select></div></div><button class="btn-divine" onclick="divine()">今日の恋愛運を占う</button></section>
+<section class="form-section" id="formSection"><h2>✦ 生年月日を教えてください</h2><div class="date-inputs"><div class="field"><label>年</label><select id="birthYear"></select></div><div class="field"><label>月</label><select id="birthMonth"></select></div><div class="field"><label>日</label><select id="birthDay"></select></div></div><button class="btn-divine" onclick="divine()">今日の恋愛運を占う</button></section>
 <section class="result-section" id="resultSection"><div class="result-card"><div class="result-header"><div class="sign-icon" id="resultIcon"></div><div class="sign-name" id="resultSignName"></div><div class="result-date" id="resultDate"></div><div id="astroBadges" style="margin-top:10px"></div></div><div class="score-section"><div class="score-label">今日の恋愛運</div><div class="score-hearts" id="scoreHearts"></div><div class="score-text" id="scoreText"></div></div><div class="result-body" id="resultBody"></div></div>
 <button class="btn-retry" onclick="retry()">✦ もう一度占う</button>
 <div class="cta-section"><p class="cta-lead">今日の恋、もっと詳しく知りたいなら</p><p class="cta-sub">プロの占い師があなたの星を本格鑑定</p>
@@ -93,7 +93,10 @@ footer .pr-label{display:inline-block;padding:2px 10px;border:1px solid rgba(255
 <script>
 const NOW=new Date(),YEAR=NOW.getFullYear(),MONTH=NOW.getMonth()+1,DAY=NOW.getDate(),DOW=NOW.getDay();
 document.getElementById('todayDate').textContent=YEAR+'年'+MONTH+'月'+DAY+'日（'+['日','月','火','水','木','金','土'][DOW]+'）';
-(function(){const mS=document.getElementById('birthMonth'),dS=document.getElementById('birthDay');for(let m=1;m<=12;m++){const o=document.createElement('option');o.value=m;o.textContent=m;mS.appendChild(o)}function ud(){const m=parseInt(mS.value),mx=new Date(2000,m,0).getDate(),c=parseInt(dS.value)||1;dS.innerHTML='';for(let d=1;d<=mx;d++){const o=document.createElement('option');o.value=d;o.textContent=d;if(d===Math.min(c,mx))o.selected=true;dS.appendChild(o)}}mS.addEventListener('change',ud);ud()})();
+(function(){
+const yS=document.getElementById('birthYear'),mS=document.getElementById('birthMonth'),dS=document.getElementById('birthDay');
+const curY=new Date().getFullYear();
+for(let y=curY;y>=1940;y--){const o=document.createElement('option');o.value=y;o.textContent=y;if(y===2000)o.selected=true;yS.appendChild(o)}for(let m=1;m<=12;m++){const o=document.createElement('option');o.value=m;o.textContent=m;mS.appendChild(o)}function ud(){const m=parseInt(mS.value),mx=new Date(2000,m,0).getDate(),c=parseInt(dS.value)||1;dS.innerHTML='';for(let d=1;d<=mx;d++){const o=document.createElement('option');o.value=d;o.textContent=d;if(d===Math.min(c,mx))o.selected=true;dS.appendChild(o)}}mS.addEventListener('change',ud);ud()})();
 
 const SIGNS=['aries','taurus','gemini','cancer','leo','virgo','libra','scorpio','sagittarius','capricorn','aquarius','pisces'];
 const S={aries:{n:'牡羊座',i:'♈',el:'fire'},taurus:{n:'牡牛座',i:'♉',el:'earth'},gemini:{n:'双子座',i:'♊',el:'air'},cancer:{n:'蟹座',i:'♋',el:'water'},leo:{n:'獅子座',i:'♌',el:'fire'},virgo:{n:'乙女座',i:'♍',el:'earth'},libra:{n:'天秤座',i:'♎',el:'air'},scorpio:{n:'蠍座',i:'♏',el:'water'},sagittarius:{n:'射手座',i:'♐',el:'fire'},capricorn:{n:'山羊座',i:'♑',el:'earth'},aquarius:{n:'水瓶座',i:'♒',el:'air'},pisces:{n:'魚座',i:'♓',el:'water'}};
@@ -101,6 +104,27 @@ const EL_JP={fire:'火',earth:'地',air:'風',water:'水'};
 
 function getZodiac(m,d){const R=[{s:'capricorn',a:101,b:119},{s:'aquarius',a:120,b:218},{s:'pisces',a:219,b:320},{s:'aries',a:321,b:419},{s:'taurus',a:420,b:520},{s:'gemini',a:521,b:621},{s:'cancer',a:622,b:722},{s:'leo',a:723,b:822},{s:'virgo',a:823,b:922},{s:'libra',a:923,b:1023},{s:'scorpio',a:1024,b:1122},{s:'sagittarius',a:1123,b:1221},{s:'capricorn',a:1222,b:1231}];const v=m*100+d;for(const r of R)if(v>=r.a&&v<=r.b)return r.s;return'capricorn';}
 
+
+// ===== パーソナルイヤーナンバー =====
+function getPersonalYear(birthY,birthM,birthD){
+  const cy=new Date().getFullYear();
+  let sum=birthM+birthD+cy;
+  while(sum>9&&sum!==11&&sum!==22){sum=String(sum).split('').reduce((a,b)=>a+parseInt(b),0)}
+  return sum;
+}
+const PYN_LOVE={
+1:'新しい恋が動き出す年。片思いの人は思い切った行動が吉。過去の恋を手放すことで、運命の出会いが訪れる予感。',
+2:'パートナーシップが深まる年。相手を受け入れる柔軟さが恋を育てる。ひとりの時間より、誰かと過ごす時間に幸運が宿る。',
+3:'恋が華やぐ年。楽しさや笑いの中から恋が生まれやすい。SNSやイベントでの出会いに注目。自分を表現するほど魅力が増す。',
+4:'信頼を築く年。派手さはないけれど、地道に関係を積み上げることで揺るがない絆が生まれる。誠実さが最大の武器。',
+5:'変化と冒険の年。今までのタイプとは違う相手との出会いがある。恋愛の固定観念を手放すと、予想外の幸運が舞い込む。',
+6:'愛と調和の年。恋愛運が最も高まる年のひとつ。結婚や同棲など、関係の深化に最適なタイミング。家庭的な幸福に恵まれる。',
+7:'内省と魂の年。自分自身を深く知ることで、本当に合う相手が見えてくる。スピリチュアルな出会いや、魂が共鳴する恋の予感。',
+8:'パワフルな恋の年。仕事と恋愛の両立がテーマ。成功や達成感が恋の魅力を高める。ステータスのある出会いの暗示も。',
+9:'完結と手放しの年。過去の恋愛パターンを卒業するとき。執着を手放すことで、新しいサイクルへの準備が整う。浄化の恋。',
+11:'直感が冴える特別な年。スピリチュアルなつながりを感じる出会いがある。シンクロニシティに導かれた恋に注目。',
+22:'運命が大きく動く年。人生を変えるレベルのパートナーシップの暗示。大きな決断を求められる場面で、心の声に従って。'
+};
 // ===== 天文計算 =====
 function getMoonPhase(y,m,d){const lp=2551443,nw=new Date(1970,0,7,20,35,0).getTime()/1000,now=new Date(y,m-1,d,12,0,0).getTime()/1000,p=((now-nw)%lp)/lp;const P=[{n:'新月',i:'🌑',k:'new'},{n:'三日月',i:'🌒',k:'waxCres'},{n:'上弦の月',i:'🌓',k:'firstQ'},{n:'十三夜月',i:'🌔',k:'waxGib'},{n:'満月',i:'🌕',k:'full'},{n:'十八夜月',i:'🌖',k:'wanGib'},{n:'下弦の月',i:'🌗',k:'lastQ'},{n:'二十六夜月',i:'🌘',k:'wanCres'}];return P[Math.floor(((p+0.0625)%1)*8)%8];}
 
@@ -275,6 +299,11 @@ function divine(){
     h+='<div class="lucky-item"><div class="lucky-label">ラッキータイム<br><span>支配星（'+ruler.p+'）に対応</span></div><div class="lucky-value">'+RT[DOW]+'</div></div>';
     h+='<div class="lucky-item"><div class="lucky-label">今日の守護石<br><span>'+si.n+'の伝統的対応石</span></div><div class="lucky-value">'+stone+'</div></div>';
     h+='</div>';
+    // パーソナルイヤーナンバー
+    const birthY=parseInt(document.getElementById('birthYear').value);
+    const pyn=getPersonalYear(birthY,m,d);
+    h+='<h3>✦ 今年の恋のテーマ（パーソナルイヤー '+pyn+'）</h3>';
+    h+='<p>'+PYN_LOVE[pyn]+'</p>';
     document.getElementById('resultBody').innerHTML=h;
     rs.scrollIntoView({behavior:'smooth',block:'start'});
   },2000);
