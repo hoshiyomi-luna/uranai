@@ -593,8 +593,8 @@ footer .pr-label {
       <span class="pr-label">PR</span><br>
       © 星読み師♦るな<br>
       本サイトにはアフィリエイト広告が含まれます
-    </footer>
-<div class="back-nav"><a href="index.html">✦ TOPへ戻る</a></div>
+    <div class="back-nav"><a href="index.html">✦ TOPへ戻る</a></div>
+</footer>
   </section>
 
 </div>
@@ -776,7 +776,7 @@ const ZODIAC = {
 };
 
 // ===== Divine function =====
-function divine() {
+function divine() {saveBirth();
   const month = parseInt(document.getElementById('birthMonth').value);
   const day = parseInt(document.getElementById('birthDay').value);
   const sign = getZodiac(month, day);
@@ -823,6 +823,33 @@ function retry() {
   document.getElementById('formSection').style.display = 'block';
   document.getElementById('formSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
+
+// ===== 入力記憶 =====
+function saveBirth(){
+  try{
+    const y=document.getElementById('birthYear');
+    const m=document.getElementById('birthMonth');
+    const d=document.getElementById('birthDay');
+    if(y)localStorage.setItem('luna_birthYear',y.value);
+    if(m)localStorage.setItem('luna_birthMonth',m.value);
+    if(d)localStorage.setItem('luna_birthDay',d.value);
+  }catch(e){}
+}
+function restoreBirth(){
+  try{
+    const y=localStorage.getItem('luna_birthYear');
+    const m=localStorage.getItem('luna_birthMonth');
+    const d=localStorage.getItem('luna_birthDay');
+    const yS=document.getElementById('birthYear');
+    const mS=document.getElementById('birthMonth');
+    const dS=document.getElementById('birthDay');
+    if(y&&yS){yS.value=y}
+    if(m&&mS){mS.value=m;mS.dispatchEvent(new Event('change'))}
+    setTimeout(()=>{if(d&&dS){dS.value=d}},50);
+  }catch(e){}
+}
+window.addEventListener('load',()=>setTimeout(restoreBirth,100));
+
 </script>
 
 </body>

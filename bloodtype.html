@@ -176,8 +176,8 @@ footer .pr-label{display:inline-block;padding:2px 10px;border:1px solid rgba(255
       <span class="pr-label">PR</span><br>
       © 星読み師♦るな<br>
       本サイトにはアフィリエイト広告が含まれます
-    </footer>
-<div class="back-nav"><a href="index.html">✦ TOPへ戻る</a></div>
+    <div class="back-nav"><a href="index.html">✦ TOPへ戻る</a></div>
+</footer>
   </section>
 </div>
 
@@ -299,7 +299,7 @@ const KYUSEI={
 9:{name:'九紫火星',icon:'☲',trait:'知性と美の星。頭脳明晰で直感が鋭く、芸術的センスにも優れる。注目を浴びやすいが、浮き沈みも激しい。恋愛では情熱的で、相手を魅了する力が強い。'}
 };
 
-function divine() {
+function divine() {saveBirth();
   if (!selectedBlood) { alert('血液型を選んでください'); return; }
   const yr=parseInt(document.getElementById('birthYear').value);
   const m=parseInt(document.getElementById('birthMonth').value);
@@ -341,6 +341,36 @@ function retry() {
   document.querySelectorAll('#bloodBtns button').forEach(b=>b.classList.remove('active'));
   document.getElementById('formSection').scrollIntoView({behavior:'smooth',block:'start'});
 }
+
+// ===== 入力記憶 =====
+function saveBirth(){
+  try{
+    const y=document.getElementById('birthYear');
+    const m=document.getElementById('birthMonth');
+    const d=document.getElementById('birthDay');
+    if(y)localStorage.setItem('luna_birthYear',y.value);
+    if(m)localStorage.setItem('luna_birthMonth',m.value);
+    if(d)localStorage.setItem('luna_birthDay',d.value);
+    if(selectedBlood)localStorage.setItem('luna_blood',selectedBlood);
+  }catch(e){}
+}
+function restoreBirth(){
+  try{
+    const y=localStorage.getItem('luna_birthYear');
+    const m=localStorage.getItem('luna_birthMonth');
+    const d=localStorage.getItem('luna_birthDay');
+    const b=localStorage.getItem('luna_blood');
+    const yS=document.getElementById('birthYear');
+    const mS=document.getElementById('birthMonth');
+    const dS=document.getElementById('birthDay');
+    if(y&&yS){yS.value=y}
+    if(m&&mS){mS.value=m;mS.dispatchEvent(new Event('change'))}
+    setTimeout(()=>{if(d&&dS){dS.value=d}},50);
+    if(b){const btn=document.querySelector('#bloodBtns button:nth-child('+(({'A':1,'B':2,'O':3,'AB':4})[b])+')');if(btn)selectBlood(btn,b)}
+  }catch(e){}
+}
+window.addEventListener('load',()=>setTimeout(restoreBirth,100));
+
 </script>
 </body>
 </html>

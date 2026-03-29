@@ -88,8 +88,8 @@ footer .pr-label{display:inline-block;padding:2px 10px;border:1px solid rgba(255
 <a class="cta-card cta-phone" href="https://px.a8.net/svt/ejp?a8mat=4AZO4G+FQSSJE+2PEO+C3BAQ" target="_blank" rel="nofollow noopener noreferrer sponsored"><div class="cta-icon">📞</div><div class="cta-title">プロの占い師に電話で相談する</div><div class="cta-desc">タロット・霊感・占星術——あなたに合った占い師を選んで、今すぐ本格鑑定。恋愛・仕事・人間関係、なんでも相談OK。</div><span class="cta-badge">新規登録で3,000円分無料 ✦ 24時間OK</span></a><img border="0" width="1" height="1" src="https://www11.a8.net/0.gif?a8mat=4AZO4G+FQSSJE+2PEO+C3BAQ" alt="">
 <a class="cta-card cta-chat" href="https://px.a8.net/svt/ejp?a8mat=4AZO4H+10X056+5SGG+5YRHE" target="_blank" rel="nofollow noopener noreferrer sponsored"><div class="cta-icon">💬</div><div class="cta-title">チャットで気軽に相談する</div><div class="cta-desc">電話はちょっと…という方に。チャットで本格鑑定が受けられます。深夜でも、通勤中でも、いつでも。</div><span class="cta-badge">初回500円分ポイントプレゼント</span></a><img border="0" width="1" height="1" src="https://www10.a8.net/0.gif?a8mat=4AZO4H+10X056+5SGG+5YRHE" alt="">
 <a class="cta-card cta-line" href="https://lin.ee/Vg3f2KS" target="_blank" rel="noopener noreferrer"><div class="cta-icon">🌙</div><div class="cta-title">るなに直接占ってもらう</div><div class="cta-desc">今日の恋愛運をさらに深く鑑定。気になることを送るだけ。</div><span class="cta-badge">無料で本格鑑定を体験する</span></a></div>
-<footer><span class="pr-label">PR</span><br>© 星読み師♦るな<br>本サイトにはアフィリエイト広告が含まれます</footer>
-<div class="back-nav"><a href="index.html">✦ TOPへ戻る</a></div></section>
+<footer><span class="pr-label">PR</span><br>© 星読み師♦るな<br>本サイトにはアフィリエイト広告が含まれます<div class="back-nav"><a href="index.html">✦ TOPへ戻る</a></div>
+</footer></section>
 </div>
 <script>
 const NOW=new Date(),YEAR=NOW.getFullYear(),MONTH=NOW.getMonth()+1,DAY=NOW.getDate(),DOW=NOW.getDay();
@@ -256,7 +256,7 @@ function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a
 
 function starStr(n){return '★'.repeat(n)+'☆'.repeat(5-n);}
 
-function divine(){
+function divine(){saveBirth();
   const m=parseInt(document.getElementById('birthMonth').value),d=parseInt(document.getElementById('birthDay').value);
   const us=getZodiac(m,d),ue=S[us].el,si=S[us];
   const moon=getMoonPhase(YEAR,MONTH,DAY),ms=getMoonSign(YEAR,MONTH,DAY),me=S[ms].el;
@@ -310,6 +310,33 @@ function divine(){
   },2000);
 }
 function retry(){document.getElementById('resultSection').style.display='none';document.getElementById('formSection').style.display='block';document.getElementById('formSection').scrollIntoView({behavior:'smooth',block:'start'});}
+
+// ===== 入力記憶 =====
+function saveBirth(){
+  try{
+    const y=document.getElementById('birthYear');
+    const m=document.getElementById('birthMonth');
+    const d=document.getElementById('birthDay');
+    if(y)localStorage.setItem('luna_birthYear',y.value);
+    if(m)localStorage.setItem('luna_birthMonth',m.value);
+    if(d)localStorage.setItem('luna_birthDay',d.value);
+  }catch(e){}
+}
+function restoreBirth(){
+  try{
+    const y=localStorage.getItem('luna_birthYear');
+    const m=localStorage.getItem('luna_birthMonth');
+    const d=localStorage.getItem('luna_birthDay');
+    const yS=document.getElementById('birthYear');
+    const mS=document.getElementById('birthMonth');
+    const dS=document.getElementById('birthDay');
+    if(y&&yS){yS.value=y}
+    if(m&&mS){mS.value=m;mS.dispatchEvent(new Event('change'))}
+    setTimeout(()=>{if(d&&dS){dS.value=d}},50);
+  }catch(e){}
+}
+window.addEventListener('load',()=>setTimeout(restoreBirth,100));
+
 </script>
 </body>
 </html>
